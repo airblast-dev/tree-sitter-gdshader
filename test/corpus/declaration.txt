@@ -1,0 +1,207 @@
+===
+Primitive
+===
+int var;
+---
+
+(source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier)))
+
+===
+Primitive Initialized Decimal Int
+===
+int var = 1434;
+---
+
+(source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))))
+
+===
+Primitive Initialized Hexadecimal Int
+===
+int var = 0xDEADBEEF;
+---
+
+(source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))))
+
+===
+Primitive Initialized Invalid Hexadecimal Int
+:error
+===
+int var = 0x1DEAzBEEx;
+---
+
+
+
+===
+Primitive Multiple Declarators
+===
+int v, a = 2, r = 1;
+---
+
+(source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))))
+
+===
+Primitive Array Declarator
+===
+int var[MY_VALUE] = {1, 2};
+---
+
+(source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (array_declarator
+        declarator: (identifier)
+        size: (identifier))
+      value: (initializer_list
+        (signed_integer)
+        (signed_integer)))))
+
+===
+Primitive Array Declarators
+===
+int a, b, c[3] = {1, 2, 3}, d[2] = {14, 23}, z = 1;
+---
+
+(source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier)
+    declarator: (identifier)
+    declarator: (init_declarator
+      declarator: (array_declarator
+        declarator: (identifier)
+        size: (signed_integer))
+      value: (initializer_list
+        (signed_integer)
+        (signed_integer)
+        (signed_integer)))
+    declarator: (init_declarator
+      declarator: (array_declarator
+        declarator: (identifier)
+        size: (signed_integer))
+      value: (initializer_list
+        (signed_integer)
+        (signed_integer)))
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))))
+
+===
+Function
+===
+void empty() {}
+---
+
+(source_file
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type))
+    declarator: (identifier)
+    parameters: (parameter_list)
+    block: (compound_statement)))
+
+===
+Function Array Returned
+===
+int[3][4] func() {}
+---
+
+(source_file
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type)
+      size: (signed_integer)
+      size: (signed_integer))
+    declarator: (identifier)
+    parameters: (parameter_list)
+    block: (compound_statement)))
+
+===
+Function Parameter Qualifier
+===
+int[3] my_func(in int a, out uint b, inout lowp float c) {}
+---
+
+(source_file
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type)
+      size: (signed_integer))
+    declarator: (identifier)
+    parameters: (parameter_list
+      (parameter_declaration
+        parameter_qualifier: (parameter_qualifier)
+        type: (primitive_type)
+        declarator: (identifier))
+      (parameter_declaration
+        parameter_qualifier: (parameter_qualifier)
+        type: (primitive_type)
+        declarator: (identifier))
+      (parameter_declaration
+        parameter_qualifier: (parameter_qualifier)
+        precision_specifier: (precision_specifier)
+        type: (primitive_type)
+        declarator: (identifier)))
+    block: (compound_statement)))
+
+===
+Empty Struct
+===
+struct Empty  {};
+---
+
+(source_file
+  (struct_declaration
+    name: (identifier)
+    fields: (struct_fields)))
+
+===
+Struct With Fields
+===
+struct WithFields {
+  int my_field, other_field[4];
+  lowp float a[3], b[6];
+};
+---
+
+(source_file
+  (struct_declaration
+    name: (identifier)
+    fields: (struct_fields
+      (field_declaration
+        type: (primitive_type)
+        declarator: (identifier)
+        declarator: (array_declarator
+          declarator: (identifier)
+          size: (signed_integer)))
+      (field_declaration
+        precision_specifier: (precision_specifier)
+        type: (primitive_type)
+        declarator: (array_declarator
+          declarator: (identifier)
+          size: (signed_integer))
+        declarator: (array_declarator
+          declarator: (identifier)
+          size: (signed_integer))))))

@@ -1,0 +1,322 @@
+===
+Pre Increment
+===
+++a;
+---
+
+(source_file
+  (expression_statement
+    (update_expression
+      argument: (identifier))))
+
+===
+Post Increment
+===
+a++;
+---
+
+(source_file
+  (expression_statement
+    (update_expression
+      argument: (identifier))))
+
+===
+Pre Decrement
+===
+--a;
+---
+
+(source_file
+  (expression_statement
+    (update_expression
+      argument: (identifier))))
+
+===
+Post Decrement
+===
+a--;
+---
+
+(source_file
+  (expression_statement
+    (update_expression
+      argument: (identifier))))
+
+===
+Logical OR
+===
+a || b;
+---
+
+(source_file
+  (expression_statement
+    (binary_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Logical AND
+===
+a && b;
+---
+
+(source_file
+  (expression_statement
+    (binary_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Logical Negation
+===
+!a;
+---
+
+(source_file
+  (expression_statement
+    (unary_expression
+      argument: (identifier))))
+
+===
+Logical Mix
+===
+a && b && c || !d;
+---
+
+(source_file
+  (expression_statement
+    (binary_expression
+      left: (binary_expression
+        left: (identifier)
+        right: (identifier))
+      right: (binary_expression
+        left: (identifier)
+        right: (unary_expression
+          argument: (identifier))))))
+
+===
+Bitwise OR
+===
+a | 2;
+---
+
+(source_file
+  (expression_statement
+    (binary_expression
+      left: (identifier)
+      right: (signed_integer))))
+
+===
+Bitwise AND
+===
+a & 3;
+---
+
+(source_file
+  (expression_statement
+    (binary_expression
+      left: (identifier)
+      right: (signed_integer))))
+
+===
+Assign
+===
+a = b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Add
+===
+a += b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Sub
+===
+a -= b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Mult
+===
+a *= b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Div
+===
+a /= b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Mod
+===
+a %= b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Left Shift
+===
+a <<= b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assign Right Shift
+===
+a >>= b;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (identifier))))
+
+===
+Arithmetic Assing Mixed Shift
+:error
+===
+a <>= b;
+---
+
+
+
+===
+Arithmetic Assing Mixed Shift Reverse
+:error
+===
+a ><= b;
+---
+
+
+
+===
+Field Access
+===
+a.b++;
+---
+
+(source_file
+  (expression_statement
+    (update_expression
+      argument: (field_expression
+        argument: (identifier)
+        field: (identifier)))))
+
+===
+Subscript
+===
+a[(1 + 3)];
+---
+
+(source_file
+  (expression_statement
+    (subscript_expression
+      argument: (identifier)
+      index: (parenthical_expression
+        (binary_expression
+          left: (signed_integer)
+          right: (signed_integer))))))
+
+===
+Field Access and Subscript
+===
+a.b[3].c;
+---
+
+(source_file
+  (expression_statement
+    (field_expression
+      argument: (subscript_expression
+        argument: (field_expression
+          argument: (identifier)
+          field: (identifier))
+        index: (signed_integer))
+      field: (identifier))))
+
+===
+Call
+===
+my_func(1, 2+3, b-c);
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      function: (identifier)
+      arguments: (argument_list
+        (signed_integer)
+        (binary_expression
+          left: (signed_integer)
+          right: (signed_integer))
+        (binary_expression
+          left: (identifier)
+          right: (identifier))))))
+
+===
+Mix
+===
+(c =++a.b) << 2 & 3 * 2 >> 2+1;
+---
+
+(source_file
+  (expression_statement
+    (binary_expression
+      left: (binary_expression
+        left: (parenthical_expression
+          (field_expression
+            argument: (assignment_expression
+              left: (identifier)
+              right: (update_expression
+                argument: (identifier)))
+            field: (identifier)))
+        right: (binary_expression
+          left: (signed_integer)
+          right: (signed_integer)))
+      right: (binary_expression
+        left: (binary_expression
+          left: (signed_integer)
+          right: (signed_integer))
+        right: (signed_integer)))))

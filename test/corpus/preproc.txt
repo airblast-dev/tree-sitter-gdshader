@@ -1,0 +1,66 @@
+===
+Include Straight
+===
+#include "my_secret_path"
+---
+
+(source_file
+  (preproc_include
+    path: (string_literal
+      (string_content))))
+
+===
+Include Split
+===
+#include \
+"my_secret_path"
+---
+
+(source_file
+  (preproc_include
+    path: (string_literal
+      (string_content))))
+
+===
+Include Split Many
+===
+#include \
+\
+"my_secret_path"
+---
+
+(source_file
+  (preproc_include
+    path: (string_literal
+      (string_content))))
+
+===
+Include Split From Path
+===
+#include "my_secret_\
+path"
+---
+
+(source_file
+  (preproc_include
+    path: (string_literal
+      (string_content)
+      (escape_sequence)
+      (string_content))))
+
+===
+Include Split From Path Many
+===
+#include "my_\
+secret_pa\
+th"
+---
+
+(source_file
+  (preproc_include
+    path: (string_literal
+      (string_content)
+      (escape_sequence)
+      (string_content)
+      (escape_sequence)
+      (string_content))))

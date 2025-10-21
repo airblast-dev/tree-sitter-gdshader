@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "gdshader",
+      "camelcase": "Gdshader",
+      "title": "Gdshader",
+      "scope": "source.gdshader",
+      "file-types": [
+        "gdshader"
+      ],
+      "injection-regex": "^gdshader$",
+      "class-name": "TreeSitterGdshader",
+      "first_line_regex": "shader_type\\s+(?:s(?:ky|patial)|canvas_item|particle|fog)\\s*;",
+      "content-regex": "void\\s+(?:vertex|f(?:ragment|og)|light|s(?:ky|tart)|process)\\s*\\(\\s*\\)\\s*{",
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "GPL3.0",
+    "description": "A parser for the Godot Shader langage",
+    "authors": [
+      {
+        "name": "Tayfun Bocek",
+        "email": "tayfunbocek@live.ca"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-gdshader"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

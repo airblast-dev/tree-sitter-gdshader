@@ -1,0 +1,364 @@
+===
+Compound
+===
+{
+  uniform float Health_Color = 12;
+  const float Health_Color = 12;
+}
+---
+
+(source_file
+  (compound_statement
+    (declaration
+      qualifier: (type_qualifier)
+      type: (primitive_type)
+      declarator: (init_declarator
+        declarator: (identifier)
+        value: (signed_integer)))
+    (declaration
+      qualifier: (type_qualifier)
+      type: (primitive_type)
+      declarator: (init_declarator
+        declarator: (identifier)
+        value: (signed_integer)))))
+
+===
+Expression
+===
+a = 1;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (identifier)
+      right: (signed_integer))))
+
+===
+Field Access Subscript Expression
+===
+b.c[2].d.c[2] = 1;
+---
+
+(source_file
+  (expression_statement
+    (assignment_expression
+      left: (subscript_expression
+        argument: (field_expression
+          argument: (field_expression
+            argument: (subscript_expression
+              argument: (field_expression
+                argument: (identifier)
+                field: (identifier))
+              index: (signed_integer))
+            field: (identifier))
+          field: (identifier))
+        index: (signed_integer))
+      right: (signed_integer))))
+
+===
+If
+===
+if (1 < 3) {}
+---
+
+(source_file
+  (if_statement
+    condition: (parenthical_expression
+      (binary_expression
+        left: (signed_integer)
+        right: (signed_integer)))
+    consequence: (compound_statement)))
+
+===
+Else
+===
+if (PI) {
+  int a = 12;
+} else {
+  varying smooth float color = 1.0;
+}
+---
+
+(source_file
+  (if_statement
+    condition: (parenthical_expression
+      (identifier))
+    consequence: (compound_statement
+      (declaration
+        type: (primitive_type)
+        declarator: (init_declarator
+          declarator: (identifier)
+          value: (signed_integer))))
+    alternative: (else_clause
+      (compound_statement
+        (declaration
+          qualifier: (type_qualifier)
+          interpolation: (interpolation_specifier)
+          type: (primitive_type)
+          declarator: (init_declarator
+            declarator: (identifier)
+            value: (float)))))))
+
+===
+Else If
+===
+if (a) {} else if (b) {
+int i_win;
+} else {}
+
+---
+
+(source_file
+  (if_statement
+    condition: (parenthical_expression
+      (identifier))
+    consequence: (compound_statement)
+    alternative: (else_clause
+      (if_statement
+        condition: (parenthical_expression
+          (identifier))
+        consequence: (compound_statement
+          (declaration
+            type: (primitive_type)
+            declarator: (identifier)))
+        alternative: (else_clause
+          (compound_statement))))))
+
+===
+While
+===
+while (1 < 3) {
+  do_something();
+}
+---
+
+(source_file
+  (while_statement
+    (parenthical_expression
+      (binary_expression
+        left: (signed_integer)
+        right: (signed_integer)))
+    (compound_statement
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (argument_list))))))
+
+===
+Do While
+===
+do {
+  echo(wonder);
+} while(IAMSPEED);
+---
+
+(source_file
+  (do_statement
+    (compound_statement
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          arguments: (argument_list
+            (identifier)))))
+    (parenthical_expression
+      (identifier))))
+
+===
+Return
+===
+void myfunc() {
+  return;
+  return 12;
+}
+---
+
+(source_file
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type))
+    declarator: (identifier)
+    parameters: (parameter_list)
+    block: (compound_statement
+      (return_statement)
+      (return_statement
+        value: (signed_integer)))))
+
+===
+Break
+===
+break;
+
+while (1 < 3) {
+  break;
+}
+---
+
+(source_file
+  (break_statement)
+  (while_statement
+    (parenthical_expression
+      (binary_expression
+        left: (signed_integer)
+        right: (signed_integer)))
+    (compound_statement
+      (break_statement))))
+
+===
+Discard
+===
+discard;
+
+void myfunc(int a, float b, float c[32]) {
+  discard;
+  return;
+  discard;
+}
+---
+
+(source_file
+  (discard_statement)
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type))
+    declarator: (identifier)
+    parameters: (parameter_list
+      (parameter_declaration
+        type: (primitive_type)
+        declarator: (identifier))
+      (parameter_declaration
+        type: (primitive_type)
+        declarator: (identifier))
+      (parameter_declaration
+        type: (primitive_type)
+        declarator: (array_declarator
+          declarator: (identifier)
+          size: (signed_integer))))
+    block: (compound_statement
+      (discard_statement)
+      (return_statement)
+      (discard_statement))))
+
+===
+Shader Type
+===
+void myfunc() {}
+shader_type canvas_item;
+const uint A = 999u;
+shader_type canvas_item     ;
+---
+
+(source_file
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type))
+    declarator: (identifier)
+    parameters: (parameter_list)
+    block: (compound_statement))
+  (shader_type_statement
+    (shader_type))
+  (declaration
+    qualifier: (type_qualifier)
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (unsigned_integer)))
+  (shader_type_statement
+    (shader_type)))
+
+===
+Render Mode
+===
+render_mode skip_vertex_transform;
+void func() {}
+render_mode unshaded;
+---
+
+(source_file
+  (render_mode_statement
+    (render_mode))
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type))
+    declarator: (identifier)
+    parameters: (parameter_list)
+    block: (compound_statement))
+  (render_mode_statement
+    (render_mode)))
+
+===
+Switch
+===
+switch (MY_VAL <<= 12 == 1) {
+  case 12:
+  case 1:
+    do_something(1, 2);
+    break;
+  case 14:
+    do_other_thing(1, PI);
+}
+---
+
+(source_file
+  (switch_statement
+    condition: (parenthical_expression
+      (binary_expression
+        left: (assignment_expression
+          left: (identifier)
+          right: (signed_integer))
+        right: (signed_integer)))
+    block: (compound_statement
+      (case_statement
+        value: (signed_integer))
+      (case_statement
+        value: (signed_integer)
+        (expression_statement
+          (call_expression
+            function: (identifier)
+            arguments: (argument_list
+              (signed_integer)
+              (signed_integer))))
+        (break_statement))
+      (case_statement
+        value: (signed_integer)
+        (expression_statement
+          (call_expression
+            function: (identifier)
+            arguments: (argument_list
+              (signed_integer)
+              (identifier))))))))
+
+===
+Continue
+===
+while ( 1== 2) {
+  continue;
+  int a = 1;
+  int b[32] = {1, 2};
+  continue;
+}
+---
+
+(source_file
+  (while_statement
+    (parenthical_expression
+      (binary_expression
+        left: (signed_integer)
+        right: (signed_integer)))
+    (compound_statement
+      (continue_statement)
+      (declaration
+        type: (primitive_type)
+        declarator: (init_declarator
+          declarator: (identifier)
+          value: (signed_integer)))
+      (declaration
+        type: (primitive_type)
+        declarator: (init_declarator
+          declarator: (array_declarator
+            declarator: (identifier)
+            size: (signed_integer))
+          value: (initializer_list
+            (signed_integer)
+            (signed_integer))))
+      (continue_statement))))

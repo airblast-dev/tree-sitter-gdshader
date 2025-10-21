@@ -1,0 +1,34 @@
+[package]
+name = "tree-sitter-gdshader"
+description = "A parser for the Godot Shader langage"
+version = "0.1.0"
+authors = ["Tayfun Bocek <tayfunbocek@live.ca>"]
+license = "GPL3.0"
+readme = "README.md"
+keywords = ["incremental", "parsing", "tree-sitter", "gdshader"]
+categories = ["parser-implementations", "parsing", "text-editors"]
+repository = "https://github.com/tree-sitter/tree-sitter-gdshader"
+edition = "2021"
+autoexamples = false
+
+build = "bindings/rust/build.rs"
+include = [
+  "bindings/rust/*",
+  "grammar.js",
+  "queries/*",
+  "src/*",
+  "tree-sitter.json",
+  "/LICENSE",
+]
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1"
+
+[build-dependencies]
+cc = "1.2"
+
+[dev-dependencies]
+tree-sitter = "0.25.10"
