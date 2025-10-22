@@ -133,7 +133,7 @@
 
 ; assume all uppercase variables as constants
 ((identifier) @constant
- (#match? @constant "^[A-Z][A-Z_0-9]+$"))
+ (#match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 ((identifier) @constant.builtin
   (#any-of? @constant.builtin "PI" "E" "TIME" "TAU")
