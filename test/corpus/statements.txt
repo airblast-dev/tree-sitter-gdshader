@@ -330,11 +330,11 @@ switch (MY_VAL <<= 12 == 1) {
 (source_file
   (switch_statement
     condition: (parenthical_expression
-      (binary_expression
-        left: (assignment_expression
-          left: (identifier)
-          right: (signed_integer))
-        right: (signed_integer)))
+      (assignment_expression
+        left: (identifier)
+        right: (binary_expression
+          left: (signed_integer)
+          right: (signed_integer))))
     block: (compound_statement
       (case_statement
         value: (signed_integer))

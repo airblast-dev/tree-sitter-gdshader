@@ -7,31 +7,31 @@
 /// <reference types="tree-sitter-cli/dsl" />
 
 const PREC = {
-  PARENTHICAL_GROUP: 1,
+  PARENTHICAL_GROUP: 17,
 
-  ARRAY_SUBSCRIPT: 2,
-  FUNCTION_CALL: 2,
-  STRUCTURE_FIELD: 2,
-  POST_INC_DEC: 2,
+  ARRAY_SUBSCRIPT: 16,
+  FUNCTION_CALL: 16,
+  STRUCTURE_FIELD: 16,
+  POST_INC_DEC: 16,
 
-  UNARY: 3,
+  UNARY: 15,
 
-  MULTIPLICATIVE: 4,
-  ADDITIVE: 5,
-  BITWISE_SHIFT: 6,
-  RELATIONAL: 7,
-  EQUALITY: 8,
+  MULTIPLICATIVE: 14,
+  ADDITIVE: 13,
+  BITWISE_SHIFT: 12,
+  RELATIONAL: 11,
+  EQUALITY: 10,
   BITWISE_AND: 9,
-  BITWISE_EXCLUSIVE_OR: 10,
-  BITWISE_INCLUSIVE_OR: 11,
-  LOGICAL_AND: 12,
-  LOGICAL_EXCLUSIVE_OR: 13,
-  LOGICAL_INCLUSIVE_OR: 14,
-  SELECTION: 15,
+  BITWISE_EXCLUSIVE_OR: 8,
+  BITWISE_INCLUSIVE_OR: 7,
+  LOGICAL_AND: 6,
+  LOGICAL_EXCLUSIVE_OR: 5,
+  LOGICAL_INCLUSIVE_OR: 4,
+  SELECTION: 3,
 
-  ARITHMETIC_ASSIGNMENT: 16,
+  ARITHMETIC_ASSIGNMENT: 2,
 
-  SEQUENCE: 17,
+  SEQUENCE: 1,
 };
 
 module.exports = grammar({
@@ -276,7 +276,7 @@ module.exports = grammar({
           choice("<", "<=", ">", ">="),
         ],
         [PREC.BITWISE_SHIFT, choice("<<", ">>")],
-        [PREC.ADDITIVE, choice("\+", "-")],
+        [PREC.ADDITIVE, choice("+", "-")],
         [PREC.MULTIPLICATIVE, choice("*", "/", "%")],
       ];
 

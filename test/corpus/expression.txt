@@ -88,11 +88,11 @@ a && b && c || !d;
     (binary_expression
       left: (binary_expression
         left: (identifier)
-        right: (identifier))
-      right: (binary_expression
-        left: (identifier)
-        right: (unary_expression
-          argument: (identifier))))))
+        right: (binary_expression
+          left: (identifier)
+          right: (identifier)))
+      right: (unary_expression
+        argument: (identifier)))))
 
 ===
 Bitwise OR
@@ -306,17 +306,32 @@ Mix
     (binary_expression
       left: (binary_expression
         left: (parenthical_expression
-          (field_expression
-            argument: (assignment_expression
-              left: (identifier)
-              right: (update_expression
-                argument: (identifier)))
-            field: (identifier)))
-        right: (binary_expression
-          left: (signed_integer)
-          right: (signed_integer)))
+          (assignment_expression
+            left: (identifier)
+            right: (update_expression
+              argument: (field_expression
+                argument: (identifier)
+                field: (identifier)))))
+        right: (signed_integer))
       right: (binary_expression
         left: (binary_expression
           left: (signed_integer)
           right: (signed_integer))
-        right: (signed_integer)))))
+        right: (binary_expression
+          left: (signed_integer)
+          right: (signed_integer))))))
+
+===
+Precedence Check
+===
+(1 < 3 | 3U);
+---
+
+(source_file
+  (expression_statement
+    (parenthical_expression
+      (binary_expression
+        left: (binary_expression
+          left: (signed_integer)
+          right: (signed_integer))
+        right: (unsigned_integer)))))
