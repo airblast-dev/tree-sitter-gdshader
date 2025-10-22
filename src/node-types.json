@@ -613,15 +613,22 @@
   {
     "type": "do_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "block": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "compound_statement",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "compound_statement",
-          "named": true
-        },
         {
           "type": "parenthical_expression",
           "named": true
@@ -638,11 +645,7 @@
       "required": true,
       "types": [
         {
-          "type": "compound_statement",
-          "named": true
-        },
-        {
-          "type": "if_statement",
+          "type": "statement",
           "named": true
         }
       ]
@@ -810,7 +813,7 @@
         "required": true,
         "types": [
           {
-            "type": "compound_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -1391,15 +1394,22 @@
   {
     "type": "while_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "block": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "compound_statement",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "compound_statement",
-          "named": true
-        },
         {
           "type": "parenthical_expression",
           "named": true

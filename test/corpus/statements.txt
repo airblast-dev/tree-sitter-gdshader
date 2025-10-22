@@ -71,6 +71,34 @@ if (1 < 3) {}
     consequence: (compound_statement)))
 
 ===
+If Non Compound
+===
+void func() {
+  if (1) while (1 < 3) {} else 1;
+}
+---
+
+(source_file
+  (function_definition
+    type: (type_specifier
+      type: (primitive_type))
+    declarator: (identifier)
+    parameters: (parameter_list)
+    block: (compound_statement
+      (if_statement
+        condition: (parenthical_expression
+          (signed_integer))
+        consequence: (while_statement
+          (parenthical_expression
+            (binary_expression
+              left: (signed_integer)
+              right: (signed_integer)))
+          block: (compound_statement))
+        alternative: (else_clause
+          (expression_statement
+            (signed_integer)))))))
+
+===
 Else
 ===
 if (PI) {
@@ -139,7 +167,7 @@ while (1 < 3) {
       (binary_expression
         left: (signed_integer)
         right: (signed_integer)))
-    (compound_statement
+    block: (compound_statement
       (expression_statement
         (call_expression
           function: (identifier)
@@ -155,7 +183,7 @@ do {
 
 (source_file
   (do_statement
-    (compound_statement
+    block: (compound_statement
       (expression_statement
         (call_expression
           function: (identifier)
@@ -201,7 +229,7 @@ while (1 < 3) {
       (binary_expression
         left: (signed_integer)
         right: (signed_integer)))
-    (compound_statement
+    block: (compound_statement
       (break_statement))))
 
 ===
@@ -345,7 +373,7 @@ while ( 1== 2) {
       (binary_expression
         left: (signed_integer)
         right: (signed_integer)))
-    (compound_statement
+    block: (compound_statement
       (continue_statement)
       (declaration
         type: (primitive_type)

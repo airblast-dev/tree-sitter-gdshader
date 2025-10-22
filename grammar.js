@@ -362,12 +362,15 @@ module.exports = grammar({
         seq(
           "if",
           field("condition", $.parenthical_expression),
-          field("consequence", $.compound_statement),
-          field("alternative", optional($.else_clause)),
+          choice(
+            seq(
+              field("consequence", $.statement),
+              field("alternative", optional($.else_clause)),
+            ),
+          ),
         ),
       ),
-    else_clause: ($) =>
-      seq("else", choice($.if_statement, $.compound_statement)),
+    else_clause: ($) => seq("else", $.statement),
     while_statement: ($) =>
       seq(
         "while",
