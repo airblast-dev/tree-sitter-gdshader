@@ -113,7 +113,7 @@ module.exports = grammar({
     // top level only bits
     _top_level_item: ($) =>
       choice(
-        $.struct_declaration,
+        $.struct_definition,
         $.function_definition,
         $.declaration,
         $.non_case_statement,
@@ -369,9 +369,19 @@ module.exports = grammar({
     else_clause: ($) =>
       seq("else", choice($.if_statement, $.compound_statement)),
     while_statement: ($) =>
-      seq("while", $.parenthical_expression, $.compound_statement),
+      seq(
+        "while",
+        $.parenthical_expression,
+        field("block", $.compound_statement),
+      ),
     do_statement: ($) =>
-      seq("do", $.compound_statement, "while", $.parenthical_expression, ";"),
+      seq(
+        "do",
+        field("block", $.compound_statement),
+        "while",
+        $.parenthical_expression,
+        ";",
+      ),
     return_statement: ($) =>
       seq("return", field("value", optional($.expression)), ";"),
     break_statement: (_) => seq("break", ";"),
@@ -435,9 +445,9 @@ module.exports = grammar({
       ),
 
     // Declaration
-    field_declaration: ($) => $._non_top_level_many_declarator,
-    struct_fields: ($) => seq("{", repeat(seq($.field_declaration, ";")), "}"),
-    struct_declaration: ($) =>
+    field_definition: ($) => $._non_top_level_many_declarator,
+    struct_fields: ($) => seq("{", repeat(seq($.field_definition, ";")), "}"),
+    struct_definition: ($) =>
       seq(
         "struct",
         field("name", $.identifier),

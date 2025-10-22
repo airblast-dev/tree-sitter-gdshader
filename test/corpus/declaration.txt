@@ -173,7 +173,7 @@ struct Empty  {};
 ---
 
 (source_file
-  (struct_declaration
+  (struct_definition
     name: (identifier)
     fields: (struct_fields)))
 
@@ -187,16 +187,16 @@ struct WithFields {
 ---
 
 (source_file
-  (struct_declaration
+  (struct_definition
     name: (identifier)
     fields: (struct_fields
-      (field_declaration
+      (field_definition
         type: (primitive_type)
         declarator: (identifier)
         declarator: (array_declarator
           declarator: (identifier)
           size: (signed_integer)))
-      (field_declaration
+      (field_definition
         precision_specifier: (precision_specifier)
         type: (primitive_type)
         declarator: (array_declarator
