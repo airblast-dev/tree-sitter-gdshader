@@ -146,7 +146,7 @@
   ((init_declarator declarator: (array_declarator declarator: (identifier) @constant)))])
 
 
-(struct_declaration name: (identifier) @type.definition) @type
+(struct_definition name: (identifier) @type.definition) @type
 
 (preproc_include "#include" @keyword.directive)
 (preproc_include path: (string_literal (string_content)* ) @string)
