@@ -1,8 +1,11 @@
 ; highlights.scm
 
 ["uniform" "const" "varying" "render_mode" "shader_type"
- "in" "inout" "out""return""while" "do" "break" "continue"
+ "return" "while" "do" "break" "continue"
  "if" "else" "switch" "case" "struct"] @keyword
+(parameter_qualifier) @keyword
+(interpolation_specifier) @keyword
+(precision_specifier) @keyword
 [
   ";"
   ":"
@@ -74,16 +77,14 @@
 (function_definition
   declarator: (identifier) @function)
 
-(field_expression
-  field: (identifier) @property
-)
+(field_expression field: (_) @property)
 
 (call_expression
   function: (identifier)
   arguments: (argument_list
     (identifier)? @variable
   )
-) @function.call
+) @function
 
 (
  (call_expression
