@@ -5,7 +5,6 @@
 (parameter_declaration declarator: (identifier) @local.definition)
 (expression operator: _? @_operator [left: (identifier) @local.reference 
                                            ; use expression/identifier as it means any node in the right field is a valid construct on its own
-                                             right: ((expression/identifier) @local.reference (#not-eq? @_operator "."))
                                              argument: (identifier) @local.reference])
 (expression/identifier) @local.reference
 
