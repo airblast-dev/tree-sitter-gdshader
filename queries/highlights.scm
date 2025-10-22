@@ -1,11 +1,8 @@
 ; highlights.scm
 
-["uniform" "const" "varying" "render_mode" "shader_type"] @keyword
-["in" "inout" "out"] @keyword.modifier
-["return"] @keyword.return
-["while" "do" "break" "continue"] @keyword.repeat
-["if" "else" "switch" "case"] @keyword.conditional
-["struct"] @keyword.type
+["uniform" "const" "varying" "render_mode" "shader_type"
+ "in" "inout" "out""return""while" "do" "break" "continue"
+ "if" "else" "switch" "case" "struct"] @keyword
 [
   ";"
   ":"
@@ -57,26 +54,22 @@
 ] @operator
 
 (ternary_expression
-  ["?" ":"] @keyword.conditional.ternary
+  ["?" ":"] @operator
 )
 
 (primitive_type) @type.builtin
 (type_identifier) @type
 (number) @number
-(float) @number.float
 
 (_
   declarator: (identifier) @variable)
-
-(field_expression
-  field: (identifier) @variable.member)
 
 (case_statement
   value: (identifier) @constant)
 
 
 (parameter_declaration
-      declarator: (identifier)* @variable.parameter)
+      declarator: [ (identifier) @variable.parameter (array_declarator declarator: (identifier) @variable.parameter)])
 
 (function_definition
   declarator: (identifier) @function)
@@ -94,9 +87,9 @@
 
 (
  (call_expression
-  function: (identifier) @func.builtin
+  function: (identifier) @function.builtin
  )
- (#any-of? @func.builtin
+ (#any-of? @function.builtin
   ; taken from: https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/shader_functions.html
   ; trigonometric builtins
   "radians" "degrees" "sin" "cos" "tan" 
@@ -136,10 +129,16 @@
  (#match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 ((identifier) @constant.builtin
-  (#any-of? @constant.builtin "PI" "E" "TIME" "TAU")
-)
+ (#any-of? @constant.builtin "PI" "E" "TAU"))
 
-(struct_declaration name: (identifier) @type.definition) @type
+(declaration . qualifier:  (type_qualifier) @_qualifier (_)* . type: (type)
+  (#eq? @_qualifier "const")
+  [((identifier) @constant)
+  ((array_declarator declarator: (identifier) @constant))
+  ((init_declarator declarator: (identifier) @constant))
+  ((init_declarator declarator: (array_declarator declarator: (identifier) @constant)))])
 
-(preproc_include "#include" @keyword.directive)
-(preproc_include path: (string_literal (string_content)* @string.special.path) @string)
+(struct_declaration name: (identifier) @type)
+
+(preproc_include "#include" @keyword)
+(preproc_include path: (_) @string)
