@@ -64,9 +64,6 @@
 (type_identifier) @type
 (number) @number
 
-(_
-  declarator: (identifier) @variable)
-
 (case_statement
   value: (identifier) @constant)
 
@@ -132,7 +129,7 @@
 ((identifier) @constant.builtin
  (#any-of? @constant.builtin "PI" "E" "TAU"))
 
-(declaration . qualifier:  (type_qualifier) @_qualifier (_)* . type: (type)
+(declaration . qualifier:  (type_qualifier) @_qualifier type: (type)
   (#eq? @_qualifier "const")
   [((identifier) @constant)
   ((array_declarator declarator: (identifier) @constant))
