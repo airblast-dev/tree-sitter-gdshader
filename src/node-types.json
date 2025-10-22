@@ -664,7 +664,7 @@
     }
   },
   {
-    "type": "field_declaration",
+    "type": "field_definition",
     "named": true,
     "fields": {
       "declarator": {
@@ -1092,7 +1092,7 @@
           "named": true
         },
         {
-          "type": "struct_declaration",
+          "type": "struct_definition",
           "named": true
         },
         {
@@ -1126,7 +1126,7 @@
     }
   },
   {
-    "type": "struct_declaration",
+    "type": "struct_definition",
     "named": true,
     "fields": {
       "fields": {
@@ -1160,7 +1160,7 @@
       "required": false,
       "types": [
         {
-          "type": "field_declaration",
+          "type": "field_definition",
           "named": true
         }
       ]

@@ -15,7 +15,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "struct_declaration"
+          "name": "struct_definition"
         },
         {
           "type": "SYMBOL",
@@ -1682,7 +1682,7 @@
         }
       ]
     },
-    "field_declaration": {
+    "field_definition": {
       "type": "SYMBOL",
       "name": "_non_top_level_many_declarator"
     },
@@ -1700,7 +1700,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "field_declaration"
+                "name": "field_definition"
               },
               {
                 "type": "STRING",
@@ -1715,7 +1715,7 @@
         }
       ]
     },
-    "struct_declaration": {
+    "struct_definition": {
       "type": "SEQ",
       "members": [
         {

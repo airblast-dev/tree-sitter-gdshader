@@ -14,7 +14,8 @@
       "first_line_regex": "shader_type\\s+(?:s(?:ky|patial)|canvas_item|particle|fog)\\s*;",
       "content-regex": "void\\s+(?:vertex|f(?:ragment|og)|light|s(?:ky|tart)|process)\\s*\\(\\s*\\)\\s*{",
       "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm"
+      "locals": "queries/locals.scm",
+      "tags": "queries/tags.scm"
     }
   ],
   "metadata": {
