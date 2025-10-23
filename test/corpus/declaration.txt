@@ -177,7 +177,7 @@ int[3] my_func(in int a, out uint b, inout lowp float c) {}
         declarator: (identifier))
       (parameter_declaration
         parameter_qualifier: (parameter_qualifier)
-        precision_specifier: (precision_specifier)
+        precision: (precision_specifier)
         type: (primitive_type)
         declarator: (identifier)))
     block: (compound_statement)))
@@ -213,7 +213,7 @@ struct WithFields {
           declarator: (identifier)
           size: (signed_integer)))
       (field_definition
-        precision_specifier: (precision_specifier)
+        precision: (precision_specifier)
         type: (primitive_type)
         declarator: (array_declarator
           declarator: (identifier)

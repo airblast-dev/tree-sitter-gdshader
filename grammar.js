@@ -40,10 +40,10 @@ module.exports = grammar({
   externals: ($) => [$._eof],
   word: ($) => $.identifier,
   conflicts: ($) => [
-    [$._type_spec, $.declaration],
     [$.type, $.call_expression],
     [$._type_identifier, $.call_expression, $.expression],
     [$.call_expression, $.expression],
+    [$.declaration, $.type_specifier]
   ],
   extras: (_) => [
     /\s|\\\r?\n/,
@@ -521,7 +521,7 @@ module.exports = grammar({
       ),
     _type_spec: ($) =>
       seq(
-        field("precision_specifier", optional($.precision_specifier)),
+        field("precision", optional($.precision_specifier)),
         field("type", $.type),
       ),
     _non_top_level_many_declarator: ($) =>
@@ -538,8 +538,7 @@ module.exports = grammar({
       seq(
         field("qualifier", optional($.type_qualifier)),
         field("interpolation", optional($.interpolation_specifier)),
-        field("precision", optional($.precision_specifier)),
-        field("type", $.type),
+        $._type_spec,
         comma_seperated_rule(
           field("declarator", choice($.init_declarator, $.declarator)),
         ),

@@ -717,7 +717,7 @@
           }
         ]
       },
-      "precision_specifier": {
+      "precision": {
         "multiple": false,
         "required": false,
         "types": [
@@ -1041,7 +1041,7 @@
           }
         ]
       },
-      "precision_specifier": {
+      "precision": {
         "multiple": false,
         "required": false,
         "types": [
@@ -1407,7 +1407,7 @@
     "type": "type_specifier",
     "named": true,
     "fields": {
-      "precision_specifier": {
+      "precision": {
         "multiple": false,
         "required": false,
         "types": [
