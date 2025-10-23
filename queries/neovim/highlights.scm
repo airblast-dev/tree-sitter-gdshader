@@ -1,9 +1,10 @@
 ; highlights.scm
-
-["uniform" "const" "varying" "render_mode" "shader_type"] @keyword
-["in" "inout" "out"] @keyword.modifier
+["shader_type" "render_mode"] @keyword
+["uniform" "const" "varying" 
+ "in" "inout" "out"] @keyword.modifier
+["lowp" "mediump" "highp"] @keyword.type
 ["return"] @keyword.return
-["while" "do" "break" "continue"] @keyword.repeat
+["while" "do" "for" "break" "continue"] @keyword.repeat
 ["if" "else" "switch" "case"] @keyword.conditional
 ["struct"] @keyword.type
 [
@@ -55,6 +56,7 @@
   "--"
   "++"
 ] @operator
+(shader_type_statement (shader_type) @attribute)
 
 (ternary_expression
   ["?" ":"] @keyword.conditional.ternary
@@ -92,11 +94,14 @@
   )
 ) @function.call
 
+(method_expression
+  method: (_) @function.method.call)
+
 (
  (call_expression
-  function: (identifier) @func.builtin
+  function: (identifier) @function.builtin
  )
- (#any-of? @func.builtin
+ (#any-of? @function.builtin
   ; taken from: https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/shader_functions.html
   ; trigonometric builtins
   "radians" "degrees" "sin" "cos" "tan" 
