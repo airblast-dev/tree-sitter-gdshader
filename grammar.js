@@ -40,8 +40,10 @@ module.exports = grammar({
   externals: ($) => [$._eof],
   word: ($) => $.identifier,
   conflicts: ($) => [
-    [$._type_identifier, $.expression],
     [$._type_spec, $.declaration],
+    [$.type, $.call_expression],
+    [$._type_identifier, $.call_expression, $.expression],
+    [$.call_expression, $.expression],
   ],
   extras: (_) => [
     /\s|\\\r?\n/,
@@ -334,9 +336,13 @@ module.exports = grammar({
       prec.left(
         PREC.FUNCTION_CALL,
         seq(
-          field("function", choice($.primitive_type, $.identifier)),
-          // TODO: find better way to add array constructor support
-          //field("size", optional($.array_constructor)),
+          // TODO: find better way to add array constructor support as this add a bunch of conflicts
+          prec.right(
+            seq(
+              field("function", choice($.primitive_type, $.identifier)),
+              field("size", repeat(seq("[", $.expression, "]"))),
+            ),
+          ),
           field("arguments", $.argument_list),
         ),
       ),

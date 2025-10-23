@@ -1159,18 +1159,51 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "FIELD",
-            "name": "function",
+            "type": "PREC_RIGHT",
+            "value": 0,
             "content": {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "primitive_type"
+                  "type": "FIELD",
+                  "name": "function",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "primitive_type"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "identifier"
+                      }
+                    ]
+                  }
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "FIELD",
+                  "name": "size",
+                  "content": {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "["
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "expression"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "]"
+                        }
+                      ]
+                    }
+                  }
                 }
               ]
             }
@@ -2458,12 +2491,21 @@
   ],
   "conflicts": [
     [
+      "_type_spec",
+      "declaration"
+    ],
+    [
+      "type",
+      "call_expression"
+    ],
+    [
       "_type_identifier",
+      "call_expression",
       "expression"
     ],
     [
-      "_type_spec",
-      "declaration"
+      "call_expression",
+      "expression"
     ]
   ],
   "precedences": [],

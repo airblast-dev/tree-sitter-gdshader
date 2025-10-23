@@ -308,6 +308,22 @@ my_func(1, 2+3, b-c);
           right: (identifier))))))
 
 ===
+Constructor Function
+===
+vec2[24][2](1.0, 2.0);
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      function: (primitive_type)
+      size: (signed_integer)
+      size: (signed_integer)
+      arguments: (argument_list
+        (float)
+        (float)))))
+
+===
 Method Call Empty
 ===
 value.method();
