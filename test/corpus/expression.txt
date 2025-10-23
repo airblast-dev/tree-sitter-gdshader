@@ -277,7 +277,19 @@ a.b[3].c;
       field: (identifier))))
 
 ===
-Call
+Call Empty
+===
+my_func();
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      function: (identifier)
+      arguments: (argument_list))))
+
+===
+Call With Arguments
 ===
 my_func(1, 2+3, b-c);
 ---
@@ -294,6 +306,49 @@ my_func(1, 2+3, b-c);
         (binary_expression
           left: (identifier)
           right: (identifier))))))
+
+===
+Method Call Empty
+===
+value.method();
+---
+
+(source_file
+  (expression_statement
+    (method_expression
+      argument: (identifier)
+      method: (identifier)
+      arguments: (argument_list))))
+
+===
+Method Call On Field
+===
+value.my_field.method();
+---
+
+(source_file
+  (expression_statement
+    (method_expression
+      argument: (field_expression
+        argument: (identifier)
+        field: (identifier))
+      method: (identifier)
+      arguments: (argument_list))))
+
+===
+Method Call With Arguments
+===
+value.my_method(1, 2);
+---
+
+(source_file
+  (expression_statement
+    (method_expression
+      argument: (identifier)
+      method: (identifier)
+      arguments: (argument_list
+        (signed_integer)
+        (signed_integer)))))
 
 ===
 Mix

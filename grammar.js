@@ -12,6 +12,7 @@ const PREC = {
   ARRAY_SUBSCRIPT: 16,
   FUNCTION_CALL: 16,
   STRUCTURE_FIELD: 16,
+  METHOD_CALL: 16,
   POST_INC_DEC: 16,
 
   UNARY: 15,
@@ -348,12 +349,26 @@ module.exports = grammar({
         seq($.expression, ",", comma_seperated_rule($.expression)),
       ),
 
+    method_expression: ($) =>
+      prec.left(
+        PREC.METHOD_CALL,
+        seq(
+          field("argument", $.expression),
+          field("operator", "."),
+          field("method", $.identifier),
+          field("arguments", $.argument_list),
+        ),
+      ),
+
     // Comma expressions are only supported under specific contexts so just
     // use choice(comma_expr, expr) instead where needed
+    //
+    // TODO: add method expressions for array.length() parsing
     expression: ($) =>
       choice(
         $.update_expression,
         $.call_expression,
+        $.method_expression,
         $.assignment_expression,
         $.unary_expression,
         $.binary_expression,

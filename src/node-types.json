@@ -38,6 +38,10 @@
         "named": true
       },
       {
+        "type": "method_expression",
+        "named": true
+      },
+      {
         "type": "number",
         "named": true
       },
@@ -950,6 +954,52 @@
     "fields": {}
   },
   {
+    "type": "method_expression",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "method": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "parameter_declaration",
     "named": true,
     "fields": {
@@ -1724,11 +1774,11 @@
   },
   {
     "type": "render_mode",
-    "named": false
+    "named": true
   },
   {
     "type": "render_mode",
-    "named": true
+    "named": false
   },
   {
     "type": "return",
