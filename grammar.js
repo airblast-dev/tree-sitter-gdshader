@@ -50,7 +50,6 @@ module.exports = grammar({
   ) => [
     $.block_item,
     $.initializer,
-    $.bracketed_expression,
     $.assignable_expression,
     $.non_case_statement,
   ],
@@ -309,13 +308,14 @@ module.exports = grammar({
 
     parenthical_expression: ($) =>
       prec(PREC.PARENTHICAL_GROUP, seq("(", $.expression, ")")),
-    bracketed_expression: ($) => seq("[", $.expression, "]"),
     subscript_expression: ($) =>
       prec.left(
         PREC.ARRAY_SUBSCRIPT,
         seq(
           field("argument", $.expression),
-          field("index", $.bracketed_expression),
+          "[",
+          field("index", $.expression),
+          "]",
         ),
       ),
 
@@ -536,7 +536,7 @@ module.exports = grammar({
       prec.right(
         seq(
           field("declarator", $.identifier),
-          field("size", repeat1($.bracketed_expression)),
+          repeat1(seq("[", field("size", $.expression), "]")),
         ),
       ),
     initializer: ($) => choice($.expression, $.initializer_list),
@@ -562,7 +562,7 @@ module.exports = grammar({
     type_specifier: ($) =>
       seq(
         field("type", $._type_spec),
-        repeat(field("size", $.bracketed_expression)),
+        repeat(seq("[", field("size", $.expression), "]")),
       ),
     function_definition: ($) =>
       seq(

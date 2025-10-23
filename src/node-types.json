@@ -201,14 +201,6 @@
         "required": true,
         "types": [
           {
-            "type": "[",
-            "named": false
-          },
-          {
-            "type": "]",
-            "named": false
-          },
-          {
             "type": "expression",
             "named": true
           }
@@ -1265,17 +1257,9 @@
         ]
       },
       "index": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "[",
-            "named": false
-          },
-          {
-            "type": "]",
-            "named": false
-          },
           {
             "type": "expression",
             "named": true
@@ -1369,14 +1353,6 @@
         "multiple": true,
         "required": false,
         "types": [
-          {
-            "type": "[",
-            "named": false
-          },
-          {
-            "type": "]",
-            "named": false
-          },
           {
             "type": "expression",
             "named": true
