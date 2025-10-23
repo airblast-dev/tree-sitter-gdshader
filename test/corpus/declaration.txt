@@ -2,9 +2,25 @@
 Primitive
 ===
 int var;
+uint var2;
+float var3;
+vec2 var4;
+sampler2D var5;
 ---
 
 (source_file
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier))
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier))
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier))
+  (declaration
+    type: (primitive_type)
+    declarator: (identifier))
   (declaration
     type: (primitive_type)
     declarator: (identifier)))
