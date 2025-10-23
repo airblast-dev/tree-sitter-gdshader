@@ -282,7 +282,7 @@
     },
     "primitive_type": {
       "type": "PATTERN",
-      "value": "void|bool|u?int|float|(?:[biu]?vec|mat)[2-4]|[iu]?sampler(?:3D|(?:2D|Cube)(?:Array)?|ExternalOES)"
+      "value": "void|bool|u?int|float|(?:[biu]?vec|mat)[2-4]|[iu]?sampler(?:2D(Array)?|3D)|sampler(?:Cube(?:Array)?|ExternalOES)"
     },
     "identifier": {
       "type": "PATTERN",

@@ -202,7 +202,7 @@ module.exports = grammar({
 
     // must appear before `identifier` as it will always take precedence over `primitive_type`
     primitive_type: (_) =>
-      /void|bool|u?int|float|(?:[biu]?vec|mat)[2-4]|[iu]?sampler(?:3D|(?:2D|Cube)(?:Array)?|ExternalOES)/,
+      /void|bool|u?int|float|(?:[biu]?vec|mat)[2-4]|[iu]?sampler(?:2D(Array)?|3D)|sampler(?:Cube(?:Array)?|ExternalOES)/,
     identifier: (_) => /(r#)?[_\p{XID_Start}][_\p{XID_Continue}]*/,
     _type_identifier: ($) => alias($.identifier, $.type_identifier),
     block_item: ($) =>
