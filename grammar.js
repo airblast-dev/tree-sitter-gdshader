@@ -30,6 +30,8 @@ const PREC = {
   SELECTION: 3,
 
   ARITHMETIC_ASSIGNMENT: 2,
+
+  SEQUENCE: 1,
 };
 
 module.exports = grammar({
@@ -338,7 +340,16 @@ module.exports = grammar({
         ),
       ),
 
-    // Comma expressions aren't supported in gdshader
+    comma_expression: ($) =>
+      prec(
+        PREC.SEQUENCE,
+        // we explicitly require the comma to avoid parsing a single
+        // expression as a comma expression
+        seq($.expression, ",", comma_seperated_rule($.expression)),
+      ),
+
+    // Comma expressions are only supported under specific contexts so just
+    // use choice(comma_expr, expr) instead where needed
     expression: ($) =>
       choice(
         $.update_expression,
@@ -399,13 +410,13 @@ module.exports = grammar({
         // unlike any other part in gdshader the comma operator is supported here meaning the following
         // is valid:
         //
-        // for(;true, false;) 
+        // for(;true, false;)
         //
         // See: https://github.com/godotengine/godot/issues/95451
-        // TODO: replace with a dedicated rule to avoid future breakage related to the issue linked above 
+        // TODO: replace with a dedicated rule to avoid future breakage related to the issue linked above
         field(
           "condition",
-          alias(optional(comma_seperated_rule($.expression)), $.for_condition),
+          optional(choice($.expression, $.comma_expression)),
         ),
         ";",
         field("update", optional($.expression)),

@@ -526,6 +526,21 @@
     }
   },
   {
+    "type": "comma_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "compound_statement",
     "named": true,
     "fields": {},
@@ -754,6 +769,10 @@
         "multiple": false,
         "required": false,
         "types": [
+          {
+            "type": "comma_expression",
+            "named": true
+          },
           {
             "type": "expression",
             "named": true
@@ -1741,11 +1760,11 @@
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "smooth",

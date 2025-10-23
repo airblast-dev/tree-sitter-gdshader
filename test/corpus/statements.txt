@@ -468,3 +468,25 @@ for (;PI < 3;x++--++) {
           right: (unary_expression
             argument: (signed_integer))))
       consequence: (break_statement))))
+
+===
+For Comma Seperated Condition
+===
+for(int a = 1; 1, 2 + 3, 3 == 1U;)
+---
+
+(source_file
+  (for_statement
+    initializer: (declaration
+      type: (primitive_type)
+      declarator: (init_declarator
+        declarator: (identifier)
+        value: (signed_integer)))
+    condition: (comma_expression
+      (signed_integer)
+      (binary_expression
+        left: (signed_integer)
+        right: (signed_integer))
+      (binary_expression
+        left: (signed_integer)
+        right: (unsigned_integer)))))
