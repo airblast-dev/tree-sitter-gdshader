@@ -1033,7 +1033,7 @@
       }
     },
     "subscript_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -1066,7 +1066,7 @@
       }
     },
     "field_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -1153,7 +1153,7 @@
       ]
     },
     "call_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",

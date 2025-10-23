@@ -43,7 +43,7 @@ module.exports = grammar({
     [$.type, $.call_expression],
     [$._type_identifier, $.call_expression, $.expression],
     [$.call_expression, $.expression],
-    [$.declaration, $.type_specifier]
+    [$.declaration, $.type_specifier],
   ],
   extras: (_) => [
     /\s|\\\r?\n/,
@@ -312,7 +312,7 @@ module.exports = grammar({
     parenthical_expression: ($) =>
       prec(PREC.PARENTHICAL_GROUP, seq("(", $.expression, ")")),
     subscript_expression: ($) =>
-      prec.left(
+      prec(
         PREC.ARRAY_SUBSCRIPT,
         seq(
           field("argument", $.expression),
@@ -323,7 +323,7 @@ module.exports = grammar({
       ),
 
     field_expression: ($) =>
-      prec.left(
+      prec(
         PREC.STRUCTURE_FIELD,
         seq(
           field("argument", $.expression),
@@ -333,10 +333,10 @@ module.exports = grammar({
     argument_list: ($) =>
       seq("(", optional(comma_seperated_rule($.expression)), ")"),
     call_expression: ($) =>
-      prec.left(
+      prec(
         PREC.FUNCTION_CALL,
         seq(
-          // TODO: find better way to add array constructor support as this add a bunch of conflicts
+          // NOTE: find better way to add array constructor support as this add a bunch of conflicts
           prec.right(
             seq(
               field("function", choice($.primitive_type, $.identifier)),
