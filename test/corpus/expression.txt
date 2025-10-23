@@ -263,16 +263,18 @@ a[(1 + 3)];
 ===
 Field Access and Subscript
 ===
-a.b[3].c;
+a.b[3u][2].c;
 ---
 
 (source_file
   (expression_statement
     (field_expression
       argument: (subscript_expression
-        argument: (field_expression
-          argument: (identifier)
-          field: (identifier))
+        argument: (subscript_expression
+          argument: (field_expression
+            argument: (identifier)
+            field: (identifier))
+          index: (unsigned_integer))
         index: (signed_integer))
       field: (identifier))))
 
