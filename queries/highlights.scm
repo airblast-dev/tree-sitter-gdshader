@@ -128,7 +128,12 @@
  (#match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 ((identifier) @constant.builtin
- (#any-of? @constant.builtin "PI" "E" "TAU"))
+ (#any-of? @constant.builtin 
+  ; common / declared in all shader types
+  "PI" "E" "TAU" "CURRENT_RENDERER" 
+  "RENDERER_COMPATIBILITY" "RENDERER_MOBILE" "RENDERER_FORWARD_PLUS"
+  ; TODO: add more builtins
+  ))
 
 (struct_definition name: (identifier) @type)
 
