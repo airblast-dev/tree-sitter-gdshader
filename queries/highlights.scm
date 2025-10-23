@@ -130,13 +130,6 @@
 ((identifier) @constant.builtin
  (#any-of? @constant.builtin "PI" "E" "TAU"))
 
-(declaration . qualifier:  (type_qualifier) @_qualifier type: (type)
-  (#eq? @_qualifier "const")
-  [((identifier) @constant)
-  ((array_declarator declarator: (identifier) @constant))
-  ((init_declarator declarator: (identifier) @constant))
-  ((init_declarator declarator: (array_declarator declarator: (identifier) @constant)))])
-
 (struct_definition name: (identifier) @type)
 
 (preproc_include "#include" @keyword)
