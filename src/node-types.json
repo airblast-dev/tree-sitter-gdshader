@@ -124,6 +124,10 @@
         "named": true
       },
       {
+        "type": "for_statement",
+        "named": true
+      },
+      {
         "type": "if_statement",
         "named": true
       },
@@ -491,6 +495,10 @@
           "named": true
         },
         {
+          "type": "for_statement",
+          "named": true
+        },
+        {
           "type": "if_statement",
           "named": true
         },
@@ -614,26 +622,26 @@
     "type": "do_statement",
     "named": true,
     "fields": {
-      "block": {
+      "condition": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "compound_statement",
+            "type": "parenthical_expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "statement",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "parenthical_expression",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -657,7 +665,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "expression",
@@ -733,6 +741,56 @@
           {
             "type": ".",
             "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "for_statement",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "statement",
+            "named": true
+          }
+        ]
+      },
+      "initializer": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declaration",
+            "named": true
+          },
+          {
+            "type": "expression_statement",
+            "named": true
+          }
+        ]
+      },
+      "update": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
           }
         ]
       }
@@ -1071,6 +1129,10 @@
           "named": true
         },
         {
+          "type": "for_statement",
+          "named": true
+        },
+        {
           "type": "function_definition",
           "named": true
         },
@@ -1395,26 +1457,26 @@
     "type": "while_statement",
     "named": true,
     "fields": {
-      "block": {
+      "condition": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "compound_statement",
+            "type": "parenthical_expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "statement",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "parenthical_expression",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1626,6 +1688,10 @@
     "named": true
   },
   {
+    "type": "for",
+    "named": false
+  },
+  {
     "type": "highp",
     "named": false
   },
@@ -1675,11 +1741,11 @@
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "smooth",

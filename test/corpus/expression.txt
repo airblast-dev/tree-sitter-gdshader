@@ -87,10 +87,10 @@ a && b && c || !d;
   (expression_statement
     (binary_expression
       left: (binary_expression
-        left: (identifier)
-        right: (binary_expression
+        left: (binary_expression
           left: (identifier)
-          right: (identifier)))
+          right: (identifier))
+        right: (identifier))
       right: (unary_expression
         argument: (identifier)))))
 

@@ -30,8 +30,6 @@ const PREC = {
   SELECTION: 3,
 
   ARITHMETIC_ASSIGNMENT: 2,
-
-  SEQUENCE: 1,
 };
 
 module.exports = grammar({
@@ -98,7 +96,7 @@ module.exports = grammar({
       "break",
       "return",
       "continue",
-      // "for",
+      "for",
 
       // other
       "discard",
@@ -339,6 +337,8 @@ module.exports = grammar({
           field("arguments", $.argument_list),
         ),
       ),
+
+    // Comma expressions aren't supported in gdshader
     expression: ($) =>
       choice(
         $.update_expression,
@@ -356,7 +356,7 @@ module.exports = grammar({
 
     // Statements
     compound_statement: ($) => seq("{", repeat($.block_item), "}"),
-    expression_statement: ($) => seq($.expression, ";"),
+    expression_statement: ($) => seq(optional($.expression), ";"),
     if_statement: ($) =>
       prec.right(
         seq(
@@ -374,17 +374,46 @@ module.exports = grammar({
     while_statement: ($) =>
       seq(
         "while",
-        $.parenthical_expression,
-        field("block", $.compound_statement),
+        field("condition", $.parenthical_expression),
+        field("consequence", $.statement),
       ),
     do_statement: ($) =>
       seq(
         "do",
-        field("block", $.compound_statement),
+        field("consequence", $.statement),
         "while",
-        $.parenthical_expression,
+        field("condition", $.parenthical_expression),
         ";",
       ),
+    for_statement: ($) =>
+      prec.left(seq(
+        "for",
+        "(",
+        // the first value is expected to be a declaration but we also accept expressions
+        // so things like macros can be validly parsed if they actually declare a variable
+        // (very niche use case but valid syntax - just not logical)
+        field(
+          "initializer",
+          choice($.declaration, $.expression_statement),
+        ),
+        // unlike any other part in gdshader the comma operator is supported here meaning the following
+        // is valid:
+        //
+        // for(;true, false;) 
+        //
+        // See: https://github.com/godotengine/godot/issues/95451
+        // TODO: replace with a dedicated rule to avoid future breakage related to the issue linked above 
+        field(
+          "condition",
+          alias(optional(comma_seperated_rule($.expression)), $.for_condition),
+        ),
+        ";",
+        field("update", optional($.expression)),
+        ")",
+        // unlike C, gdshader accepts any statement
+        // so something like `for (;;) int a;` is actually valid
+        field("consequence", optional($.statement)),
+      )),
     return_statement: ($) =>
       seq("return", field("value", optional($.expression)), ";"),
     break_statement: (_) => seq("break", ";"),
@@ -438,6 +467,7 @@ module.exports = grammar({
         $.while_statement,
         $.do_statement,
         $.return_statement,
+        $.for_statement,
         $.break_statement,
         $.discard_statement,
         $.continue_statement,
