@@ -7,12 +7,13 @@
       "title": "Gdshader",
       "scope": "source.gdshader",
       "file-types": [
-        "gdshader"
+        "gdshader",
+        "gdshaderinc"
       ],
-      "injection-regex": "^gdshader$",
       "class-name": "TreeSitterGdshader",
       "first_line_regex": "shader_type\\s+(?:s(?:ky|patial)|canvas_item|particle|fog)\\s*;",
       "content-regex": "void\\s+(?:vertex|f(?:ragment|og)|light|s(?:ky|tart)|process)\\s*\\(\\s*\\)\\s*{",
+      "injection-regex": "^(gdshader)$",
       "highlights": "queries/highlights.scm",
       "locals": "queries/locals.scm",
       "tags": "queries/tags.scm"
