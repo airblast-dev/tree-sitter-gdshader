@@ -143,8 +143,7 @@
 ((identifier) @constant.builtin
  (#any-of? @constant.builtin "PI" "E" "TAU"))
 
-(declaration . qualifier:  (type_qualifier) @_qualifier (_)* . type: (type)
-  (#eq? @_qualifier "const")
+(const_declaration type: (type)
   [((identifier) @constant)
   ((array_declarator declarator: (identifier) @constant))
   ((init_declarator declarator: (identifier) @constant))

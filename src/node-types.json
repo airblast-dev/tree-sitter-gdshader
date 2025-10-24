@@ -1,5 +1,27 @@
 [
   {
+    "type": "declaration",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "const_declaration",
+        "named": true
+      },
+      {
+        "type": "uniform_declaration",
+        "named": true
+      },
+      {
+        "type": "variable_declaration",
+        "named": true
+      },
+      {
+        "type": "varying_declaration",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "declarator",
     "named": true,
     "subtypes": [
@@ -195,7 +217,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "declarator",
             "named": true
           }
         ]
@@ -578,12 +600,7 @@
     }
   },
   {
-    "type": "continue_statement",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "declaration",
+    "type": "const_declaration",
     "named": true,
     "fields": {
       "declarator": {
@@ -600,16 +617,6 @@
           }
         ]
       },
-      "interpolation": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "interpolation_specifier",
-            "named": true
-          }
-        ]
-      },
       "precision": {
         "multiple": false,
         "required": false,
@@ -622,11 +629,11 @@
       },
       "qualifier": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "type_qualifier",
-            "named": true
+            "type": "const",
+            "named": false
           }
         ]
       },
@@ -641,6 +648,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "continue_statement",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "discard_statement",
@@ -1399,11 +1411,6 @@
     }
   },
   {
-    "type": "type_qualifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "type_specifier",
     "named": true,
     "fields": {
@@ -1482,6 +1489,56 @@
     }
   },
   {
+    "type": "uniform_declaration",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "declarator",
+            "named": true
+          },
+          {
+            "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "precision": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "precision_specifier",
+            "named": true
+          }
+        ]
+      },
+      "qualifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "uniform",
+            "named": false
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "unsigned_integer",
     "named": true,
     "fields": {}
@@ -1511,6 +1568,106 @@
           {
             "type": "--",
             "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "variable_declaration",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "declarator",
+            "named": true
+          },
+          {
+            "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "precision": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "precision_specifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "varying_declaration",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "declarator",
+            "named": true
+          },
+          {
+            "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "interpolation": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "interpolation_specifier",
+            "named": true
+          }
+        ]
+      },
+      "precision": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "precision_specifier",
+            "named": true
+          }
+        ]
+      },
+      "qualifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "varying",
+            "named": false
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
           }
         ]
       }
@@ -1792,11 +1949,11 @@
   },
   {
     "type": "render_mode",
-    "named": true
+    "named": false
   },
   {
     "type": "render_mode",
-    "named": false
+    "named": true
   },
   {
     "type": "return",
@@ -1804,11 +1961,11 @@
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "smooth",

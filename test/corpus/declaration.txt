@@ -9,19 +9,19 @@ sampler2D var5;
 ---
 
 (source_file
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier))
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier))
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier))
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier))
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier)))
 
@@ -32,7 +32,7 @@ int var = 1434;
 ---
 
 (source_file
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (init_declarator
       declarator: (identifier)
@@ -45,7 +45,7 @@ int var = 0xDEADBEEF;
 ---
 
 (source_file
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (init_declarator
       declarator: (identifier)
@@ -67,7 +67,7 @@ int v, a = 2, r = 1;
 ---
 
 (source_file
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier)
     declarator: (init_declarator
@@ -84,7 +84,7 @@ int var[MY_VALUE] = {1, 2};
 ---
 
 (source_file
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (init_declarator
       declarator: (array_declarator
@@ -101,7 +101,7 @@ int a, b, c[3] = {1, 2, 3}, d[2] = {14, 23}, z = 1;
 ---
 
 (source_file
-  (declaration
+  (variable_declaration
     type: (primitive_type)
     declarator: (identifier)
     declarator: (identifier)

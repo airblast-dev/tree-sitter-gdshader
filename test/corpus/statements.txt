@@ -9,14 +9,12 @@ Compound
 
 (source_file
   (compound_statement
-    (declaration
-      qualifier: (type_qualifier)
+    (uniform_declaration
       type: (primitive_type)
       declarator: (init_declarator
         declarator: (identifier)
         value: (signed_integer)))
-    (declaration
-      qualifier: (type_qualifier)
+    (const_declaration
       type: (primitive_type)
       declarator: (init_declarator
         declarator: (identifier)
@@ -113,15 +111,14 @@ if (PI) {
     condition: (parenthical_expression
       (identifier))
     consequence: (compound_statement
-      (declaration
+      (variable_declaration
         type: (primitive_type)
         declarator: (init_declarator
           declarator: (identifier)
           value: (signed_integer))))
     alternative: (else_clause
       (compound_statement
-        (declaration
-          qualifier: (type_qualifier)
+        (varying_declaration
           interpolation: (interpolation_specifier)
           type: (primitive_type)
           declarator: (init_declarator
@@ -147,7 +144,7 @@ int i_win;
         condition: (parenthical_expression
           (identifier))
         consequence: (compound_statement
-          (declaration
+          (variable_declaration
             type: (primitive_type)
             declarator: (identifier)))
         alternative: (else_clause
@@ -285,8 +282,7 @@ shader_type canvas_item     ;
     block: (compound_statement))
   (shader_type_statement
     (shader_type))
-  (declaration
-    qualifier: (type_qualifier)
+  (const_declaration
     type: (primitive_type)
     declarator: (init_declarator
       declarator: (identifier)
@@ -375,12 +371,12 @@ while ( 1== 2) {
         right: (signed_integer)))
     consequence: (compound_statement
       (continue_statement)
-      (declaration
+      (variable_declaration
         type: (primitive_type)
         declarator: (init_declarator
           declarator: (identifier)
           value: (signed_integer)))
-      (declaration
+      (variable_declaration
         type: (primitive_type)
         declarator: (init_declarator
           declarator: (array_declarator
@@ -417,7 +413,7 @@ for(int a, b, c[3] = {1, 2, 3}; 1 < 3; i++)
 
 (source_file
   (for_statement
-    initializer: (declaration
+    initializer: (variable_declaration
       type: (primitive_type)
       declarator: (identifier)
       declarator: (identifier)
@@ -477,7 +473,7 @@ for(int a = 1; 1, 2 + 3, 3 == 1U;)
 
 (source_file
   (for_statement
-    initializer: (declaration
+    initializer: (variable_declaration
       type: (primitive_type)
       declarator: (init_declarator
         declarator: (identifier)

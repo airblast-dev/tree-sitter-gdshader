@@ -135,6 +135,9 @@
   ; TODO: add more builtins
   ))
 
+((identifier) @variable.builtin
+(#any-of? @variable.builtin "TIME"))
+
 (struct_definition name: (identifier) @type)
 
 (preproc_include "#include" @keyword)

@@ -43,7 +43,8 @@ module.exports = grammar({
     [$.type, $.call_expression],
     [$._type_identifier, $.call_expression, $.expression],
     [$.call_expression, $.expression],
-    [$.declaration, $.type_specifier],
+    [$.variable_declaration, $.type_specifier],
+    [$.array_declarator],
   ],
   extras: (_) => [
     /\s|\\\r?\n/,
@@ -65,6 +66,7 @@ module.exports = grammar({
     $.expression,
     $.statement,
     $.declarator,
+    $.declaration,
   ],
   reserved: {
     global: (_) => [
@@ -534,15 +536,42 @@ module.exports = grammar({
         $._type_spec,
         field("declarator", $.declarator),
       ),
-    declaration: ($) =>
+    _comma_seperated_decl: ($) =>
+      comma_seperated_rule(
+        field("declarator", choice($.init_declarator, $.declarator)),
+      ),
+    type_hint: ($) =>
+      seq(field("operator", ":"), choice($.identifier, $.call_expression)),
+    const_declaration: ($) =>
       seq(
-        field("qualifier", optional($.type_qualifier)),
+        field("qualifier", "const"),
+        $._type_spec,
+        $._comma_seperated_decl,
+        ";",
+      ),
+    varying_declaration: ($) =>
+      seq(
+        field("qualifier", "varying"),
         field("interpolation", optional($.interpolation_specifier)),
         $._type_spec,
-        comma_seperated_rule(
-          field("declarator", choice($.init_declarator, $.declarator)),
-        ),
+        $._comma_seperated_decl,
         ";",
+      ),
+    uniform_declaration: ($) =>
+      seq(
+        field("qualifier", "uniform"),
+        $._type_spec,
+        $._comma_seperated_decl,
+        ";",
+      ),
+    variable_declaration: ($) =>
+      seq($._type_spec, $._comma_seperated_decl, ";"),
+    declaration: ($) =>
+      choice(
+        $.variable_declaration,
+        $.const_declaration,
+        $.varying_declaration,
+        $.uniform_declaration,
       ),
     init_declarator: ($) =>
       seq(
@@ -551,13 +580,13 @@ module.exports = grammar({
         field("value", $.initializer),
       ),
     declarator: ($) =>
-      field("declarator", choice($.identifier, $.array_declarator)),
+      seq(
+        field("declarator", choice($.identifier, $.array_declarator)),
+      ),
     array_declarator: ($) =>
-      prec.right(
-        seq(
-          field("declarator", $.identifier),
-          repeat1(seq("[", field("size", $.expression), "]")),
-        ),
+      seq(
+        field("declarator", $.declarator),
+        repeat1(seq("[", field("size", $.expression), "]")),
       ),
     initializer: ($) => choice($.expression, $.initializer_list),
     initializer_list: ($) =>
