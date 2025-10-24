@@ -221,3 +221,88 @@ struct WithFields {
         declarator: (array_declarator
           declarator: (identifier)
           size: (signed_integer))))))
+
+===
+Const Declaration
+===
+const float A[32]: my_hint = 1;
+---
+
+(source_file
+  (const_declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (array_declarator
+        declarator: (identifier)
+        size: (signed_integer))
+      hint: (type_hint
+        (identifier))
+      value: (signed_integer))))
+
+===
+Const Declaration Many
+===
+const lowp vec2 Z[1]: my_hint, Y = 12313, Z: my_hint_func(1,2) = 123123;
+---
+
+(source_file
+  (const_declaration
+    precision: (precision_specifier)
+    type: (primitive_type)
+    declarator: (array_declarator
+      declarator: (identifier)
+      size: (signed_integer))
+    hint: (type_hint
+      (identifier))
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))
+    declarator: (init_declarator
+      declarator: (identifier)
+      hint: (type_hint
+        (call_expression
+          function: (identifier)
+          arguments: (argument_list
+            (signed_integer)
+            (signed_integer))))
+      value: (signed_integer))))
+
+===
+Uniform Declaration
+===
+uniform lowp vec4 Z: type_hint = vec4(123);
+---
+
+(source_file
+  (uniform_declaration
+    precision: (precision_specifier)
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      hint: (type_hint
+        (identifier))
+      value: (call_expression
+        function: (primitive_type)
+        arguments: (argument_list
+          (signed_integer))))))
+
+===
+Uniform Declaration Many
+===
+uniform vec3 ZAZA: hint, ZEZE: other_hint(), ZXZX = 123;
+---
+
+(source_file
+  (uniform_declaration
+    type: (primitive_type)
+    declarator: (identifier)
+    hint: (type_hint
+      (identifier))
+    declarator: (identifier)
+    hint: (type_hint
+      (call_expression
+        function: (identifier)
+        arguments: (argument_list)))
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer))))

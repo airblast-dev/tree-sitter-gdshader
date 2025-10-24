@@ -22,20 +22,6 @@
     ]
   },
   {
-    "type": "declarator",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "array_declarator",
-        "named": true
-      },
-      {
-        "type": "identifier",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "expression",
     "named": true,
     "subtypes": [
@@ -217,7 +203,11 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -608,11 +598,25 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
             "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]
@@ -724,7 +728,21 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]
@@ -932,7 +950,21 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]
@@ -1038,7 +1070,21 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]
@@ -1411,6 +1457,36 @@
     }
   },
   {
+    "type": "type_hint",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_specifier",
     "named": true,
     "fields": {
@@ -1497,11 +1573,25 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
             "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]
@@ -1582,11 +1672,25 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
             "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]
@@ -1622,11 +1726,25 @@
         "required": true,
         "types": [
           {
-            "type": "declarator",
+            "type": "array_declarator",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
             "type": "init_declarator",
+            "named": true
+          }
+        ]
+      },
+      "hint": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "type_hint",
             "named": true
           }
         ]

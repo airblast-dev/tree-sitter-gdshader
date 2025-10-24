@@ -45,6 +45,7 @@ module.exports = grammar({
     [$.call_expression, $.expression],
     [$.variable_declaration, $.type_specifier],
     [$.array_declarator],
+    [$._comma_seperated_decl, $._declarator_item],
   ],
   extras: (_) => [
     /\s|\\\r?\n/,
@@ -56,6 +57,7 @@ module.exports = grammar({
     $.initializer,
     $.assignable_expression,
     $.non_case_statement,
+    $.declarator,
   ],
   supertypes: (
     $,
@@ -65,7 +67,6 @@ module.exports = grammar({
     $.type,
     $.expression,
     $.statement,
-    $.declarator,
     $.declaration,
   ],
   reserved: {
@@ -529,16 +530,11 @@ module.exports = grammar({
     _non_top_level_many_declarator: ($) =>
       seq(
         $._type_spec,
-        comma_seperated_rule(field("declarator", $.declarator)),
-      ),
-    _non_top_level_single_declarator: ($) =>
-      seq(
-        $._type_spec,
-        field("declarator", $.declarator),
+        comma_seperated_rule($.declarator),
       ),
     _comma_seperated_decl: ($) =>
       comma_seperated_rule(
-        field("declarator", choice($.init_declarator, $.declarator)),
+        choice(field("declarator", $.init_declarator), $.declarator),
       ),
     type_hint: ($) =>
       seq(field("operator", ":"), choice($.identifier, $.call_expression)),
@@ -575,17 +571,23 @@ module.exports = grammar({
       ),
     init_declarator: ($) =>
       seq(
-        field("declarator", $.declarator),
+        field("declarator", $._declarator_item),
+        field("hint", optional($.type_hint)),
         field("operator", "="),
         field("value", $.initializer),
       ),
+    _declarator_item: ($) => choice($.identifier, $.array_declarator),
     declarator: ($) =>
       seq(
-        field("declarator", choice($.identifier, $.array_declarator)),
+        choice(
+          field("declarator", $.identifier),
+          field("declarator", $.array_declarator),
+        ),
+        optional(field("hint", optional($.type_hint))),
       ),
     array_declarator: ($) =>
       seq(
-        field("declarator", $.declarator),
+        field("declarator", $._declarator_item),
         repeat1(seq("[", field("size", $.expression), "]")),
       ),
     initializer: ($) => choice($.expression, $.initializer_list),
@@ -595,7 +597,10 @@ module.exports = grammar({
     parameter_declaration: ($) =>
       seq(
         field("parameter_qualifier", optional($.parameter_qualifier)),
-        $._non_top_level_single_declarator,
+        seq(
+          $._type_spec,
+          $.declarator,
+        ),
       ),
     parameter_list: ($) =>
       seq(

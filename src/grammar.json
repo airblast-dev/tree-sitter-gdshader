@@ -2023,12 +2023,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "FIELD",
-              "name": "declarator",
-              "content": {
-                "type": "SYMBOL",
-                "name": "declarator"
-              }
+              "type": "SYMBOL",
+              "name": "declarator"
             },
             {
               "type": "REPEAT",
@@ -2040,12 +2036,8 @@
                     "value": ","
                   },
                   {
-                    "type": "FIELD",
-                    "name": "declarator",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "declarator"
-                    }
+                    "type": "SYMBOL",
+                    "name": "declarator"
                   }
                 ]
               }
@@ -2054,42 +2046,25 @@
         }
       ]
     },
-    "_non_top_level_single_declarator": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_type_spec"
-        },
-        {
-          "type": "FIELD",
-          "name": "declarator",
-          "content": {
-            "type": "SYMBOL",
-            "name": "declarator"
-          }
-        }
-      ]
-    },
     "_comma_seperated_decl": {
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "declarator",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "declarator",
+              "content": {
                 "type": "SYMBOL",
                 "name": "init_declarator"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "declarator"
               }
-            ]
-          }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "declarator"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -2101,21 +2076,21 @@
                 "value": ","
               },
               {
-                "type": "FIELD",
-                "name": "declarator",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "declarator",
+                    "content": {
                       "type": "SYMBOL",
                       "name": "init_declarator"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "declarator"
                     }
-                  ]
-                }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "declarator"
+                  }
+                ]
               }
             ]
           }
@@ -2285,7 +2260,23 @@
           "name": "declarator",
           "content": {
             "type": "SYMBOL",
-            "name": "declarator"
+            "name": "_declarator_item"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "hint",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "type_hint"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         },
         {
@@ -2306,25 +2297,66 @@
         }
       ]
     },
+    "_declarator_item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array_declarator"
+        }
+      ]
+    },
     "declarator": {
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "declarator",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "declarator",
+              "content": {
                 "type": "SYMBOL",
                 "name": "identifier"
-              },
-              {
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "declarator",
+              "content": {
                 "type": "SYMBOL",
                 "name": "array_declarator"
               }
-            ]
-          }
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "hint",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "type_hint"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -2336,7 +2368,7 @@
           "name": "declarator",
           "content": {
             "type": "SYMBOL",
-            "name": "declarator"
+            "name": "_declarator_item"
           }
         },
         {
@@ -2448,8 +2480,17 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_non_top_level_single_declarator"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_type_spec"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "declarator"
+            }
+          ]
         }
       ]
     },
@@ -2600,6 +2641,10 @@
     ],
     [
       "array_declarator"
+    ],
+    [
+      "_comma_seperated_decl",
+      "_declarator_item"
     ]
   ],
   "precedences": [],
@@ -2613,7 +2658,8 @@
     "block_item",
     "initializer",
     "assignable_expression",
-    "non_case_statement"
+    "non_case_statement",
+    "declarator"
   ],
   "supertypes": [
     "number",
@@ -2621,7 +2667,6 @@
     "type",
     "expression",
     "statement",
-    "declarator",
     "declaration"
   ],
   "reserved": {
