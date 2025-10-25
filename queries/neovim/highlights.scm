@@ -154,3 +154,5 @@
 
 (preproc_include "#include" @keyword.directive)
 (preproc_include path: (string_literal (string_content)* ) @string)
+(comment) @comment
+

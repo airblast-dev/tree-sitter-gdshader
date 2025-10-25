@@ -1990,6 +1990,11 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "const",
     "named": false
   },
@@ -2067,11 +2072,11 @@
   },
   {
     "type": "render_mode",
-    "named": false
+    "named": true
   },
   {
     "type": "render_mode",
-    "named": true
+    "named": false
   },
   {
     "type": "return",
@@ -2079,11 +2084,11 @@
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "smooth",

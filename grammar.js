@@ -47,8 +47,9 @@ module.exports = grammar({
     [$.array_declarator],
     [$._comma_seperated_decl, $._declarator_item],
   ],
-  extras: (_) => [
+  extras: ($) => [
     /\s|\\\r?\n/,
+    $.comment,
   ],
   inline: (
     $,
@@ -625,6 +626,16 @@ module.exports = grammar({
         field("parameters", $.parameter_list),
         field("block", $.compound_statement),
       ),
+    // from: https://github.com/tree-sitter/tree-sitter-c/blob/ae19b676b13bdcc13b7665397e6d9b14975473dd/grammar.js#L1361
+    comment: (_) =>
+      token(choice(
+        seq("//", /(\\+(.|\r?\n)|[^\\\n])*/),
+        seq(
+          "/*",
+          /[^*]*\*+([^/*][^*]*\*+)*/,
+          "/",
+        ),
+      )),
   },
 });
 

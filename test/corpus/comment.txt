@@ -1,0 +1,23 @@
+===
+Double Slash Comment
+===
+// Hello World
+// ASKDJHASKJDH
+---
+
+(source_file
+  (comment)
+  (comment))
+
+===
+Multiline
+===
+/* Hello World
+
+
+
+*/
+---
+
+(source_file
+  (comment))

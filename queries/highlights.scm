@@ -142,3 +142,4 @@
 
 (preproc_include "#include" @keyword)
 (preproc_include path: (_) @string)
+(comment) @comment
