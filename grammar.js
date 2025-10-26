@@ -157,7 +157,12 @@ module.exports = grammar({
       )),
 
     preproc: ($) =>
-      choice($.preproc_include, $.preproc_define, $.preproc_define_func),
+      choice(
+        $.preproc_include,
+        $.preproc_define,
+        $.preproc_define_func,
+        $.preproc_undef,
+      ),
     // https://github.com/tree-sitter/tree-sitter-c/blob/ae19b676b13bdcc13b7665397e6d9b14975473dd/grammar.js#L165C5-L165C69
     preproc_arg: (_) => token(prec(-1, /\S([^/\n]|\/[^*]|\\\r?\n)*/)),
     preproc_include: ($) =>
@@ -176,11 +181,17 @@ module.exports = grammar({
     preproc_define_func: ($) =>
       seq(
         "#define",
-        field("declarator", $.identifier),
+        field("name", $.identifier),
         token.immediate("("),
         optional(comma_seperated_rule(repeat($.identifier))),
         ")",
         field("value", optional($.preproc_arg)),
+        choice(token.immediate(/\r?\n/), $._eof),
+      ),
+    preproc_undef: ($) =>
+      seq(
+        "#undef",
+        field("argument", $.identifier),
         choice(token.immediate(/\r?\n/), $._eof),
       ),
 

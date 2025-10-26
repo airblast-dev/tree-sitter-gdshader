@@ -2,15 +2,21 @@
 
 ["uniform" "const" "varying" "render_mode" "shader_type"
  "return" "while" "do" "break" "continue"
- "if" "else" "switch" "case" "struct" "for"
- "lowp" "mediump" "highp" "in" "inout" "out"] @keyword
+ "if" "else" "switch" "case" "struct" "for"] @keyword
 (parameter_qualifier) @keyword
 (interpolation_specifier) @keyword
 (precision_specifier) @keyword
+(identifier) @variable
+(struct_definition name: (identifier) @type)
+
+(preproc . _ @keyword . (_))
+(preproc_define_func . _ . name: (identifier) @function.special)
+(preproc_define_func . _ . name: (identifier) @function.special)
+(preproc_include path: (_) @string)
+(preproc_undef argument: (identifier) @constant)
+(comment) @comment
 [
   ";"
-  ":"
-  ","
   "."
 ] @punctuation.delimiter
 [
@@ -138,9 +144,3 @@
 
 ((identifier) @variable.builtin
 (#any-of? @variable.builtin "TIME"))
-
-(struct_definition name: (identifier) @type)
-
-(preproc . _ @keyword . (_))
-(preproc_include path: (_) @string)
-(comment) @comment

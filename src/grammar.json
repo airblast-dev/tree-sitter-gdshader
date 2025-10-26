@@ -124,6 +124,10 @@
         {
           "type": "SYMBOL",
           "name": "preproc_define_func"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "preproc_undef"
         }
       ]
     },
@@ -299,6 +303,39 @@
                 "type": "BLANK"
               }
             ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "\\r?\\n"
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_eof"
+            }
+          ]
+        }
+      ]
+    },
+    "preproc_undef": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#undef"
+        },
+        {
+          "type": "FIELD",
+          "name": "argument",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
           }
         },
         {

@@ -132,6 +132,10 @@
       {
         "type": "preproc_include",
         "named": true
+      },
+      {
+        "type": "preproc_undef",
+        "named": true
       }
     ]
   },
@@ -1277,6 +1281,22 @@
     }
   },
   {
+    "type": "preproc_undef",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "render_mode_statement",
     "named": true,
     "fields": {},
@@ -1937,6 +1957,10 @@
     "named": false
   },
   {
+    "type": "#undef",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -2195,11 +2219,11 @@
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "smooth",

@@ -98,3 +98,13 @@ g
   (preproc_define_func
     declarator: (identifier)
     value: (preproc_arg)))
+
+===
+Undef
+===
+#undef MYVAR
+---
+
+(source_file
+  (preproc_undef
+    argument: (identifier)))
