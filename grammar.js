@@ -69,6 +69,8 @@ module.exports = grammar({
     $.expression,
     $.statement,
     $.declaration,
+    $.preproc,
+    $.literal,
   ],
   reserved: {
     global: (_) => [
@@ -123,7 +125,7 @@ module.exports = grammar({
         $.function_definition,
         $.declaration,
         $.non_case_statement,
-        $.preproc_include,
+        $.preproc,
       ),
 
     // preproc bits
@@ -153,10 +155,32 @@ module.exports = grammar({
           ),
         ),
       )),
+
+    preproc: ($) =>
+      choice($.preproc_include, $.preproc_define, $.preproc_define_func),
+    // https://github.com/tree-sitter/tree-sitter-c/blob/ae19b676b13bdcc13b7665397e6d9b14975473dd/grammar.js#L165C5-L165C69
+    preproc_arg: (_) => token(prec(-1, /\S([^/\n]|\/[^*]|\\\r?\n)*/)),
     preproc_include: ($) =>
       seq(
-        "#include",
+        field("#include"),
         field("path", $.string_literal),
+        choice(token.immediate(/\r?\n/), $._eof),
+      ),
+    preproc_define: ($) =>
+      seq(
+        "#define",
+        field("name", $.identifier),
+        field("value", optional($.preproc_arg)),
+        choice(token.immediate(/\r?\n/), $._eof),
+      ),
+    preproc_define_func: ($) =>
+      seq(
+        "#define",
+        field("declarator", $.identifier),
+        token.immediate("("),
+        repeat($.identifier),
+        ")",
+        field("value", optional($.preproc_arg)),
         choice(token.immediate(/\r?\n/), $._eof),
       ),
 
@@ -195,6 +219,7 @@ module.exports = grammar({
     scope: (_) => "global",
 
     // common bits
+    bool: (_) => choice("true", "false"),
     _any_integer: (_) => /[+-]?(?:0x[a-f0-9]+|\d+)/i,
     unsigned_integer: ($) =>
       seq($._any_integer, token.immediate(choice("u", "U"))),
@@ -206,6 +231,7 @@ module.exports = grammar({
         $.integer,
         $.float,
       ),
+    literal: ($) => choice($.bool, $.number),
 
     // must appear before `identifier` as it will always take precedence over `primitive_type`
     primitive_type: (_) =>
@@ -216,7 +242,7 @@ module.exports = grammar({
       choice(
         $.statement,
         $.declaration,
-        $.preproc_include,
+        $.preproc,
       ),
     type: ($) => choice($.primitive_type, $._type_identifier),
 
@@ -387,7 +413,7 @@ module.exports = grammar({
         $.ternary_expression,
         $.parenthical_expression,
         $.identifier,
-        $.number,
+        $.literal,
       ),
 
     // Statements

@@ -64,3 +64,37 @@ th"
       (string_content)
       (escape_sequence)
       (string_content))))
+
+===
+Define Empty
+===
+#define Hello
+---
+
+(source_file
+  (preproc_define
+    name: (identifier)))
+
+===
+Define With Tokens
+===
+#define Hello ashdaksh \
+askhdaskhd
+---
+
+(source_file
+  (preproc_define
+    name: (identifier)
+    value: (preproc_arg)))
+
+===
+Define Function Macro No Args
+===
+#define Hello() my thin\
+g
+---
+
+(source_file
+  (preproc_define_func
+    declarator: (identifier)
+    value: (preproc_arg)))

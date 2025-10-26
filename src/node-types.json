@@ -46,11 +46,11 @@
         "named": true
       },
       {
-        "type": "method_expression",
+        "type": "literal",
         "named": true
       },
       {
-        "type": "number",
+        "type": "method_expression",
         "named": true
       },
       {
@@ -90,6 +90,20 @@
     ]
   },
   {
+    "type": "literal",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "bool",
+        "named": true
+      },
+      {
+        "type": "number",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "number",
     "named": true,
     "subtypes": [
@@ -99,6 +113,24 @@
       },
       {
         "type": "integer",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "preproc",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "preproc_define",
+        "named": true
+      },
+      {
+        "type": "preproc_define_func",
+        "named": true
+      },
+      {
+        "type": "preproc_include",
         "named": true
       }
     ]
@@ -417,6 +449,11 @@
     }
   },
   {
+    "type": "bool",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "break_statement",
     "named": true,
     "fields": {}
@@ -579,7 +616,7 @@
           "named": true
         },
         {
-          "type": "preproc_include",
+          "type": "preproc",
           "named": true
         },
         {
@@ -1162,6 +1199,68 @@
     "fields": {}
   },
   {
+    "type": "preproc_define",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "preproc_arg",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "preproc_define_func",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "preproc_arg",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "preproc_include",
     "named": true,
     "fields": {
@@ -1278,7 +1377,7 @@
           "named": true
         },
         {
-          "type": "preproc_include",
+          "type": "preproc",
           "named": true
         },
         {
@@ -1830,6 +1929,10 @@
     "named": false
   },
   {
+    "type": "#define",
+    "named": false
+  },
+  {
     "type": "#include",
     "named": false
   },
@@ -2023,6 +2126,10 @@
     "named": true
   },
   {
+    "type": "false",
+    "named": false
+  },
+  {
     "type": "flat",
     "named": false
   },
@@ -2067,6 +2174,10 @@
     "named": false
   },
   {
+    "type": "preproc_arg",
+    "named": true
+  },
+  {
     "type": "primitive_type",
     "named": true
   },
@@ -2104,6 +2215,10 @@
   },
   {
     "type": "switch",
+    "named": false
+  },
+  {
+    "type": "true",
     "named": false
   },
   {
