@@ -96,7 +96,7 @@ g
 
 (source_file
   (preproc_define_func
-    declarator: (identifier)
+    name: (identifier)
     value: (preproc_arg)))
 
 ===

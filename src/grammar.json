@@ -233,7 +233,7 @@
         },
         {
           "type": "FIELD",
-          "name": "declarator",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"

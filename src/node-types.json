@@ -1232,7 +1232,7 @@
     "type": "preproc_define_func",
     "named": true,
     "fields": {
-      "declarator": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [

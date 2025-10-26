@@ -1571,7 +1571,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_operator, 2},
     {field_value, 3},
   [114] =
-    {field_declarator, 1},
+    {field_name, 1},
     {field_value, 4},
   [116] =
     {field_consequence, 5},
@@ -1599,7 +1599,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_precision, 1, .inherited = true},
     {field_type, 1, .inherited = true},
   [135] =
-    {field_declarator, 1},
+    {field_name, 1},
     {field_value, 5},
   [137] =
     {field_consequence, 6},
@@ -1627,7 +1627,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_precision, 1, .inherited = true},
     {field_type, 1, .inherited = true},
   [157] =
-    {field_declarator, 1},
+    {field_name, 1},
     {field_value, 6},
   [159] =
     {field_condition, 3},
@@ -16731,10 +16731,10 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [549] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_render_mode_statement, 4, 0, 0),
   [551] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_while_statement, 3, 0, 18),
   [553] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_while_statement, 3, 0, 18),
-  [555] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 7, 0, 35),
-  [557] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 7, 0, 35),
-  [559] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 5, 0, 35),
-  [561] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 5, 0, 35),
+  [555] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 7, 0, 14),
+  [557] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 7, 0, 14),
+  [559] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 5, 0, 14),
+  [561] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 5, 0, 14),
   [563] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 7, 0, 56),
   [565] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 7, 0, 56),
   [567] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define, 3, 0, 14),
@@ -16753,8 +16753,8 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [595] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc, 1, 0, 0),
   [597] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 6, 0, 49),
   [599] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 6, 0, 49),
-  [601] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 6, 0, 35),
-  [603] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 6, 0, 35),
+  [601] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_preproc_define_func, 6, 0, 14),
+  [603] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_preproc_define_func, 6, 0, 14),
   [605] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_if_statement, 3, 0, 18),
   [607] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_if_statement, 3, 0, 18),
   [609] = {.entry = {.count = 1, .reusable = false}}, SHIFT(36),
