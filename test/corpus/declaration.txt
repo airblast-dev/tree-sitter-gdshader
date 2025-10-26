@@ -125,6 +125,19 @@ int a, b, c[3] = {1, 2, 3}, d[2] = {14, 23}, z = 1;
       value: (signed_integer))))
 
 ===
+Primitive Boolean
+===
+bool myval = false;
+---
+
+(source_file
+  (variable_declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (bool))))
+
+===
 Function
 ===
 void empty() {}

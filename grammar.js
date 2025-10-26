@@ -162,7 +162,7 @@ module.exports = grammar({
     preproc_arg: (_) => token(prec(-1, /\S([^/\n]|\/[^*]|\\\r?\n)*/)),
     preproc_include: ($) =>
       seq(
-        field("#include"),
+        "#include",
         field("path", $.string_literal),
         choice(token.immediate(/\r?\n/), $._eof),
       ),
@@ -178,7 +178,7 @@ module.exports = grammar({
         "#define",
         field("declarator", $.identifier),
         token.immediate("("),
-        repeat($.identifier),
+        optional(comma_seperated_rule(repeat($.identifier))),
         ")",
         field("value", optional($.preproc_arg)),
         choice(token.immediate(/\r?\n/), $._eof),
