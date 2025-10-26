@@ -629,7 +629,7 @@ module.exports = grammar({
     // from: https://github.com/tree-sitter/tree-sitter-c/blob/ae19b676b13bdcc13b7665397e6d9b14975473dd/grammar.js#L1361
     comment: (_) =>
       token(choice(
-        seq("//", /(\\+(.|\r?\n)|[^\\\n])*/),
+        seq("//", /(?:.*)/),
         seq(
           "/*",
           /[^*]*\*+([^/*][^*]*\*+)*/,
