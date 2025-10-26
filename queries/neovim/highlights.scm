@@ -66,6 +66,7 @@
 (type_identifier) @type
 (number) @number
 (float) @number.float
+(bool) @boolean
 
 (_
   declarator: (identifier) @variable)
@@ -153,6 +154,8 @@
 (struct_definition name: (identifier) @type.definition) @type
 
 (preproc_include "#include" @keyword.directive)
-(preproc_include path: (string_literal (string_content)* ) @string)
+(preproc_define . _ @keyword.directive.define . (identifier) @constant.macro)
+(preproc_define_func . _ @keyword.directive.define . (identifier) @constant.macro)
+(preproc_include path: (_) @string)
 (comment) @comment
 

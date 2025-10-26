@@ -64,6 +64,7 @@
 (primitive_type) @type.builtin
 (type_identifier) @type
 (number) @number
+(bool) @boolean
 
 (case_statement
   value: (identifier) @constant)
@@ -140,6 +141,6 @@
 
 (struct_definition name: (identifier) @type)
 
-(preproc_include "#include" @keyword)
+(preproc . _ @keyword . (_))
 (preproc_include path: (_) @string)
 (comment) @comment
