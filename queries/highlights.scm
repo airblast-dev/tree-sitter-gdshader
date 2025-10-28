@@ -10,8 +10,7 @@
 (struct_definition name: (identifier) @type)
 
 (preproc . _ @keyword . (_))
-(preproc_define_func . _ . name: (identifier) @function.special)
-(preproc_define_func . _ . name: (identifier) @function.special)
+(preproc_define_func name: (identifier) @function)
 (preproc_include path: (_) @string)
 (preproc_undef argument: (identifier) @constant)
 (comment) @comment
@@ -61,11 +60,9 @@
   "<<="
   "--"
   "++"
+  "?"
+  ":"
 ] @operator
-
-(ternary_expression
-  ["?" ":"] @operator
-)
 
 (primitive_type) @type.builtin
 (type_identifier) @type
