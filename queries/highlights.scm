@@ -65,6 +65,7 @@
   "?"
   ":"
 ] @operator
+(comma_expression operator: "," @operator)
 
 (primitive_type) @type.builtin
 (type_identifier) @type
