@@ -8,6 +8,8 @@
 (precision_specifier) @keyword
 (identifier) @variable
 (struct_definition name: (identifier) @type)
+(struct_definition (struct_fields (field_definition declarator: [ 
+  (identifier) @variable.member (array_declarator declarator: (identifier) @variable.member)])))
 
 (preproc . _ @keyword . (_))
 (preproc_define_func name: (identifier) @function)
@@ -141,3 +143,5 @@
 
 ((identifier) @variable.builtin
 (#any-of? @variable.builtin "TIME"))
+
+(type_hint [(identifier) @attribute (call_expression function: (_) @attribute)])
