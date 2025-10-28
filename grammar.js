@@ -416,8 +416,7 @@ module.exports = grammar({
         // expression as a comma expression
         seq(
           $.expression,
-          field("operator", ","),
-          comma_seperated_rule($.expression),
+          repeat1(seq(field("operator", ","), $.expression)),
         ),
       ),
 
