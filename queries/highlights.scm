@@ -9,6 +9,8 @@
 
 ; spatial 
 (source_file
+ ; only comments and preprocessor directives are allowed before a shader type so ignore shader type
+ ; statements in any other node
  [(comment) (preproc)]*
  .
  (shader_type_statement (shader_type) @_shader_type)
