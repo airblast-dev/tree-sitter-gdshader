@@ -1,6 +1,7 @@
 ; highlights.scm
 
-["uniform" "const" "varying" "render_mode" "shader_type"
+["global" "group_uniforms" "uniform" "const" "varying" 
+ "render_mode" "shader_type"
  "return" "while" "do" "break" "continue"
  "if" "else" "switch" "case" "struct" "for"] @keyword
 (parameter_qualifier) @keyword

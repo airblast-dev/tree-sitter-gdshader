@@ -111,8 +111,9 @@ module.exports = grammar({
 
       // other
       "discard",
-      //"group_uniforms",
-      //"global",
+      "group_uniforms",
+      "global",
+      "instance"
     ],
   },
   rules: {
@@ -216,16 +217,6 @@ module.exports = grammar({
 
     preproc_pragma: ($) => seq("#pragma", /[^\s]+/, $.base_preproc_cond),
 
-    // TODO: handle if and ifdefs etc.
-
-    // gdshader specific bits (things that aren't in C or GLSL)
-    type_qualifier: (_) =>
-      choice(
-        "uniform",
-        "varying",
-        "const",
-      ),
-
     interpolation_specifier: (_) =>
       choice(
         "flat",
@@ -246,9 +237,7 @@ module.exports = grammar({
         "inout",
       ),
 
-    _group_uniforms: (_) => "group_uniforms",
-
-    scope: (_) => "global",
+    scope: (_) => choice("global", "instance"),
 
     // common bits
     bool: (_) => choice("true", "false"),
@@ -617,6 +606,7 @@ module.exports = grammar({
       ),
     uniform_declaration: ($) =>
       seq(
+        field("scope", optional($.scope)),
         field("qualifier", "uniform"),
         $._type_spec,
         $._comma_seperated_decl,
@@ -624,12 +614,24 @@ module.exports = grammar({
       ),
     variable_declaration: ($) =>
       seq($._type_spec, $._comma_seperated_decl, ";"),
+    group_uniforms_declarator: ($) =>
+      seq(
+        field("group", $.identifier),
+        optional(seq(".", field("subgroup", $.group_uniforms_declarator))),
+      ),
+    group_uniforms_declaration: ($) =>
+      seq(
+        "group_uniforms",
+        field("declarator", optional($.group_uniforms_declarator)),
+        ";",
+      ),
     declaration: ($) =>
       choice(
         $.variable_declaration,
         $.const_declaration,
         $.varying_declaration,
         $.uniform_declaration,
+        $.group_uniforms_declaration,
       ),
     init_declarator: ($) =>
       seq(

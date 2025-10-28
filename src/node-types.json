@@ -8,6 +8,10 @@
         "named": true
       },
       {
+        "type": "group_uniforms_declaration",
+        "named": true
+      },
+      {
         "type": "uniform_declaration",
         "named": true
       },
@@ -986,6 +990,48 @@
     }
   },
   {
+    "type": "group_uniforms_declaration",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "group_uniforms_declarator",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "group_uniforms_declarator",
+    "named": true,
+    "fields": {
+      "group": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "subgroup": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "group_uniforms_declarator",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {
@@ -1446,6 +1492,11 @@
     }
   },
   {
+    "type": "scope",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "shader_type_statement",
     "named": true,
     "fields": {},
@@ -1850,6 +1901,16 @@
           {
             "type": "uniform",
             "named": false
+          }
+        ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "scope",
+            "named": true
           }
         ]
       },
@@ -2312,6 +2373,14 @@
     "named": false
   },
   {
+    "type": "global",
+    "named": false
+  },
+  {
+    "type": "group_uniforms",
+    "named": false
+  },
+  {
     "type": "highp",
     "named": false
   },
@@ -2329,6 +2398,10 @@
   },
   {
     "type": "inout",
+    "named": false
+  },
+  {
+    "type": "instance",
     "named": false
   },
   {
@@ -2365,11 +2438,11 @@
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "smooth",
