@@ -414,7 +414,11 @@ module.exports = grammar({
         PREC.SEQUENCE,
         // we explicitly require the comma to avoid parsing a single
         // expression as a comma expression
-        seq($.expression, ",", comma_seperated_rule($.expression)),
+        seq(
+          $.expression,
+          field("operator", ","),
+          comma_seperated_rule($.expression),
+        ),
       ),
 
     method_expression: ($) =>
