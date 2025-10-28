@@ -6,6 +6,66 @@
 (parameter_qualifier) @keyword
 (interpolation_specifier) @keyword
 (precision_specifier) @keyword
+
+; spatial 
+(source_file
+ [(comment) (preproc)]*
+ .
+ (shader_type_statement (shader_type) @_shader_type)
+ (#eq? @_shader_type "spatial")
+ (_)*
+ (render_mode_statement (render_mode) @keyword)
+  (#any-of? @keyword 
+	"blend_mix" "blend_add" "blend_sub" "blend_mul" "blend_premul_alpha"
+	"depth_draw_opaque" "depth_draw_always" "depth_draw_never" "depth_prepass_alpha" 
+	"depth_test_disabled" "sss_mode_skin" "cull_back" "cull_front" "cull_disabled" 
+	"unshaded" "wireframe" "debug_shadow_splits" "diffuse_burley" "diffuse_lambert" 
+	"diffuse_lambert_wrap" "diffuse_toon" "specular_schlick_ggx" "specular_toon"
+	"specular_disabled" "skip_vertex_transform" "world_vertex_coords" "ensure_correct_normals"
+	"shadows_disabled" "ambient_light_disabled" "shadow_to_opacity" "vertex_lighting"
+	"particle_trails" "alpha_to_coverage" "alpha_to_coverage_and_one" "fog_disabled"))
+
+; canvas_item
+(source_file
+ [(comment) (preproc)]*
+ .
+ (shader_type_statement (shader_type) @_shader_type)
+ (#eq? @_shader_type "canvas_item")
+ (_)*
+ (render_mode_statement (render_mode) @keyword)
+  (#any-of? @keyword 
+	"blend_mix" "blend_add" "blend_sub" "blend_mul" "blend_premul_alpha"
+	"blend_disabled" "unshaded" "light_only" "skip_vertex_transform" "world_vertex_coords"))
+
+; particle
+(source_file
+ [(comment) (preproc)]*
+ .
+ (shader_type_statement (shader_type) @_shader_type)
+ (#eq? @_shader_type "particle")
+ (_)*
+ (render_mode_statement (render_mode) @keyword)
+  (#any-of? @keyword 
+	"keep_data" "disable_force" "disable_velocity" "collision_use_scale"))
+
+; sky
+(source_file
+ [(comment) (preproc)]*
+ .
+ (shader_type_statement (shader_type) @_shader_type)
+ (#eq? @_shader_type "sky")
+ (_)*
+ (render_mode_statement (render_mode) @keyword)
+  (#any-of? @keyword 
+	"use_half_res_pass" "use_quarter_res_pass" "disable_fog"))
+
+; fog has no render modes
+
+
+
+(shader_type_statement (shader_type) @keyword)
+(#any-of? @keyword "spatial" "canvas_item" "particle" "sky" "fog")
+
 (identifier) @variable
 (struct_definition name: (identifier) @type)
 (struct_definition (struct_fields (field_definition declarator: [ 
