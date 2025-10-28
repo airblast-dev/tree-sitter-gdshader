@@ -130,7 +130,35 @@
         "named": true
       },
       {
+        "type": "preproc_elif",
+        "named": true
+      },
+      {
+        "type": "preproc_else",
+        "named": true
+      },
+      {
+        "type": "preproc_endif",
+        "named": true
+      },
+      {
+        "type": "preproc_if",
+        "named": true
+      },
+      {
+        "type": "preproc_ifdef",
+        "named": true
+      },
+      {
+        "type": "preproc_ifndef",
+        "named": true
+      },
+      {
         "type": "preproc_include",
+        "named": true
+      },
+      {
+        "type": "preproc_pragma",
         "named": true
       },
       {
@@ -1265,6 +1293,80 @@
     }
   },
   {
+    "type": "preproc_elif",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "preproc_else",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "preproc_endif",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "preproc_if",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "preproc_ifdef",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "preproc_ifndef",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "preproc_include",
     "named": true,
     "fields": {
@@ -1279,6 +1381,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "preproc_pragma",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "preproc_undef",
@@ -1953,7 +2060,35 @@
     "named": false
   },
   {
+    "type": "#elif",
+    "named": false
+  },
+  {
+    "type": "#else",
+    "named": false
+  },
+  {
+    "type": "#endif",
+    "named": false
+  },
+  {
+    "type": "#if",
+    "named": false
+  },
+  {
+    "type": "#ifdef",
+    "named": false
+  },
+  {
+    "type": "#ifndef",
+    "named": false
+  },
+  {
     "type": "#include",
+    "named": false
+  },
+  {
+    "type": "#pragma",
     "named": false
   },
   {
@@ -2207,11 +2342,11 @@
   },
   {
     "type": "render_mode",
-    "named": true
+    "named": false
   },
   {
     "type": "render_mode",
-    "named": false
+    "named": true
   },
   {
     "type": "return",
@@ -2219,11 +2354,11 @@
   },
   {
     "type": "shader_type",
-    "named": true
+    "named": false
   },
   {
     "type": "shader_type",
-    "named": false
+    "named": true
   },
   {
     "type": "smooth",

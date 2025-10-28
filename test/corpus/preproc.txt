@@ -108,3 +108,82 @@ Undef
 (source_file
   (preproc_undef
     argument: (identifier)))
+
+===
+Ifdef
+===
+#ifdef MYMACRO
+do_thing;
+#endif
+---
+
+(source_file
+  (preproc_ifdef
+    argument: (identifier))
+  (expression_statement
+    (identifier))
+  (preproc_endif))
+
+===
+Ifdef Else
+===
+#ifdef ASDAD
+int a = 2;
+#else
+int a = 122;
+#endif
+---
+
+(source_file
+  (preproc_ifdef
+    argument: (identifier))
+  (variable_declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer)))
+  (preproc_else)
+  (variable_declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer)))
+  (preproc_endif))
+
+===
+ElifDef
+===
+#ifdef A
+int a = 1;
+#elif B
+int b = 1u;
+#else
+#endif
+---
+
+(source_file
+  (preproc_ifdef
+    argument: (identifier))
+  (variable_declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (signed_integer)))
+  (preproc_elif
+    argument: (identifier))
+  (variable_declaration
+    type: (primitive_type)
+    declarator: (init_declarator
+      declarator: (identifier)
+      value: (unsigned_integer)))
+  (preproc_else)
+  (preproc_endif))
+
+===
+Pragma
+===
+#pragma MyEpicPragma
+---
+
+(source_file
+  (preproc_pragma))
