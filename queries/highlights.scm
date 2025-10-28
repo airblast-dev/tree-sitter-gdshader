@@ -62,7 +62,6 @@
 ; fog has no render modes
 
 
-
 (shader_type_statement (shader_type) @keyword)
 (#any-of? @keyword "spatial" "canvas_item" "particle" "sky" "fog")
 
