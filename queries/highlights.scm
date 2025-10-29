@@ -78,6 +78,9 @@
 (preproc_include path: (_) @string)
 (preproc_undef argument: (identifier) @constant)
 (comment) @comment
+
+((comment) @comment.documentation . [(struct_definition) (declaration) (function_definition)])
+
 [
   ";"
   "."
