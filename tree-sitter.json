@@ -30,7 +30,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/tree-sitter/tree-sitter-gdshader"
+      "repository": "https://github.com/airblast-dev/tree-sitter-gdshader"
     }
   },
   "bindings": {
