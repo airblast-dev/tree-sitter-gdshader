@@ -1,7 +1,7 @@
 /**
  * @file A parser for the Godot Shader langage
  * @author Tayfun Bocek <tayfunbocek@live.ca>
- * @license MIT 
+ * @license MIT
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
@@ -390,7 +390,7 @@ module.exports = grammar({
           prec.right(
             seq(
               field("function", choice($.primitive_type, $.identifier)),
-              field("size", repeat(seq("[", $.expression, "]"))),
+              field("size", repeat(seq("[", optional($.expression), "]"))),
             ),
           ),
           field("arguments", $.argument_list),
