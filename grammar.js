@@ -1,7 +1,7 @@
 /**
  * @file A parser for the Godot Shader langage
  * @author Tayfun Bocek <tayfunbocek@live.ca>
- * @license GPL3.0
+ * @license MIT 
  */
 
 /// <reference types="tree-sitter-cli/dsl" />

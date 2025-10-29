@@ -15,7 +15,7 @@ classifiers = [
 ]
 authors = [{ name = "Tayfun Bocek", email = "tayfunbocek@live.ca" }]
 requires-python = ">=3.10"
-license.text = "GPL3.0"
+license.text = "MIT"
 readme = "README.md"
 
 [project.urls]
