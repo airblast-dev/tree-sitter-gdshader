@@ -238,7 +238,7 @@ struct WithFields {
 ===
 Const Declaration
 ===
-const float A[32]: my_hint = 1;
+const float A[32] = 1;
 ---
 
 (source_file
@@ -248,14 +248,12 @@ const float A[32]: my_hint = 1;
       declarator: (array_declarator
         declarator: (identifier)
         size: (signed_integer))
-      hint: (type_hint
-        (identifier))
       value: (signed_integer))))
 
 ===
 Const Declaration Many
 ===
-const lowp vec2 Z[1]: my_hint, Y = 12313, Z: my_hint_func(1,2) = 123123;
+const lowp vec2 Z[1], Y = 12313, Z = 123123;
 ---
 
 (source_file
@@ -265,19 +263,11 @@ const lowp vec2 Z[1]: my_hint, Y = 12313, Z: my_hint_func(1,2) = 123123;
     declarator: (array_declarator
       declarator: (identifier)
       size: (signed_integer))
-    hint: (type_hint
-      (identifier))
     declarator: (init_declarator
       declarator: (identifier)
       value: (signed_integer))
     declarator: (init_declarator
       declarator: (identifier)
-      hint: (type_hint
-        (call_expression
-          function: (identifier)
-          arguments: (argument_list
-            (signed_integer)
-            (signed_integer))))
       value: (signed_integer))))
 
 ===
@@ -290,35 +280,13 @@ uniform lowp vec4 Z: type_hint = vec4(123);
   (uniform_declaration
     precision: (precision_specifier)
     type: (primitive_type)
-    declarator: (init_declarator
-      declarator: (identifier)
-      hint: (type_hint
-        (identifier))
-      value: (call_expression
-        function: (primitive_type)
-        arguments: (argument_list
-          (signed_integer))))))
-
-===
-Uniform Declaration Many
-===
-uniform vec3 ZAZA: hint, ZEZE: other_hint(), ZXZX = 123;
----
-
-(source_file
-  (uniform_declaration
-    type: (primitive_type)
     declarator: (identifier)
     hint: (type_hint
       (identifier))
-    declarator: (identifier)
-    hint: (type_hint
-      (call_expression
-        function: (identifier)
-        arguments: (argument_list)))
-    declarator: (init_declarator
-      declarator: (identifier)
-      value: (signed_integer))))
+    value: (call_expression
+      function: (primitive_type)
+      arguments: (argument_list
+        (signed_integer)))))
 
 ===
 Uniform Declaration Scoped
@@ -331,15 +299,13 @@ instance uniform int my_thing = 1;
   (uniform_declaration
     scope: (scope)
     type: (primitive_type)
-    declarator: (init_declarator
-      declarator: (identifier)
-      value: (signed_integer)))
+    declarator: (identifier)
+    value: (signed_integer))
   (uniform_declaration
     scope: (scope)
     type: (primitive_type)
-    declarator: (init_declarator
-      declarator: (identifier)
-      value: (signed_integer))))
+    declarator: (identifier)
+    value: (signed_integer)))
 
 ===
 Group Uniforms

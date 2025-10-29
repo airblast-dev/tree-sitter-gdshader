@@ -11,9 +11,8 @@ Compound
   (compound_statement
     (uniform_declaration
       type: (primitive_type)
-      declarator: (init_declarator
-        declarator: (identifier)
-        value: (signed_integer)))
+      declarator: (identifier)
+      value: (signed_integer))
     (const_declaration
       type: (primitive_type)
       declarator: (init_declarator

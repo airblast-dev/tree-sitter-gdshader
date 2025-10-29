@@ -15,6 +15,15 @@ uniform int a = 1;
 //          ^ variable
 //            ^ operator
 //              ^ number
+uniform float a: color_source, other_hint = 1.0;
+// <- keyword
+//      ^^^^^ type.builtin
+//            ^ variable
+//               ^^^^^^^^^^^^ attribute
+//                             ^^^^^^^^^^ attribute
+//                                        ^ operator
+//                                          ^^^ number
+//                                             ^ punctuation.delimiter
 varying smooth int a = 1;
 // <- keyword
 //      ^ keyword

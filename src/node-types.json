@@ -695,16 +695,6 @@
           }
         ]
       },
-      "hint": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "type_hint",
-            "named": true
-          }
-        ]
-      },
       "precision": {
         "multiple": false,
         "required": false,
@@ -817,16 +807,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "hint": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "type_hint",
             "named": true
           }
         ]
@@ -1085,16 +1065,6 @@
           }
         ]
       },
-      "hint": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_hint",
-            "named": true
-          }
-        ]
-      },
       "operator": {
         "multiple": false,
         "required": true,
@@ -1201,16 +1171,6 @@
           },
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "hint": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_hint",
             "named": true
           }
         ]
@@ -1760,7 +1720,7 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -1857,7 +1817,7 @@
     "named": true,
     "fields": {
       "declarator": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -1867,15 +1827,11 @@
           {
             "type": "identifier",
             "named": true
-          },
-          {
-            "type": "init_declarator",
-            "named": true
           }
         ]
       },
       "hint": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -1920,6 +1876,20 @@
         "types": [
           {
             "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "initializer_list",
             "named": true
           }
         ]
@@ -1983,16 +1953,6 @@
           }
         ]
       },
-      "hint": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "type_hint",
-            "named": true
-          }
-        ]
-      },
       "precision": {
         "multiple": false,
         "required": false,
@@ -2033,16 +1993,6 @@
           },
           {
             "type": "init_declarator",
-            "named": true
-          }
-        ]
-      },
-      "hint": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "type_hint",
             "named": true
           }
         ]

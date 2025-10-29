@@ -588,7 +588,10 @@ module.exports = grammar({
         choice(field("declarator", $.init_declarator), $.declarator),
       ),
     type_hint: ($) =>
-      seq(field("operator", ":"), choice($.identifier, $.call_expression)),
+      seq(
+        field("operator", ":"),
+        comma_seperated_rule(choice($.identifier, $.call_expression)),
+      ),
     const_declaration: ($) =>
       seq(
         field("qualifier", "const"),
@@ -609,7 +612,9 @@ module.exports = grammar({
         field("scope", optional($.scope)),
         field("qualifier", "uniform"),
         $._type_spec,
-        $._comma_seperated_decl,
+        $.declarator,
+        optional(field("hint", optional($.type_hint))),
+        optional(seq("=", field("value", $.initializer))),
         ";",
       ),
     variable_declaration: ($) =>
@@ -636,7 +641,6 @@ module.exports = grammar({
     init_declarator: ($) =>
       seq(
         field("declarator", $._declarator_item),
-        field("hint", optional($.type_hint)),
         field("operator", "="),
         field("value", $.initializer),
       ),
@@ -647,7 +651,6 @@ module.exports = grammar({
           field("declarator", $.identifier),
           field("declarator", $.array_declarator),
         ),
-        optional(field("hint", optional($.type_hint))),
       ),
     array_declarator: ($) =>
       seq(
