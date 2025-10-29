@@ -45,7 +45,6 @@ module.exports = grammar({
     [$.call_expression, $.expression],
     [$.variable_declaration, $.type_specifier],
     [$.array_declarator],
-    [$._comma_seperated_decl, $._declarator_item],
   ],
   extras: ($) => [
     /\s|\\\r?\n/,
