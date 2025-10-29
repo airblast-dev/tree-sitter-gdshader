@@ -7,3 +7,6 @@
 /** Helloooooo */
 // <- comment.documentation
 int val = 1;
+
+/** Thing */
+// <- comment
