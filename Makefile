@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-gdshader
 HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-gdshader
-VERSION := 0.1.0
+VERSION := 0.2.0
 
 # repository
 SRC_DIR := src
