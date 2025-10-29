@@ -44,6 +44,9 @@ void myfunc(mytype a, inout othertype b, out float c, in lowp float d[n + 0XDEAD
 //                                                                        ^ number
 //                                                                                  ^ punctuation.bracket
 //                                                                                   ^ punctuation.bracket
+
+/** Some important shader struct*/
+// <- comment.documentation
 struct Asd {
 // <- keyword
 //     ^ type
