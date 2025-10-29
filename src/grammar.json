@@ -539,7 +539,7 @@
         }
       ]
     },
-    "bool": {
+    "boolean": {
       "type": "CHOICE",
       "members": [
         {
@@ -622,7 +622,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "bool"
+          "name": "boolean"
         },
         {
           "type": "SYMBOL",

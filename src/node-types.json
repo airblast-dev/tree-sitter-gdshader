@@ -98,7 +98,7 @@
     "named": true,
     "subtypes": [
       {
-        "type": "bool",
+        "type": "boolean",
         "named": true
       },
       {
@@ -485,7 +485,7 @@
     }
   },
   {
-    "type": "bool",
+    "type": "boolean",
     "named": true,
     "fields": {}
   },

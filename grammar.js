@@ -240,7 +240,7 @@ module.exports = grammar({
     scope: (_) => choice("global", "instance"),
 
     // common bits
-    bool: (_) => choice("true", "false"),
+    boolean: (_) => choice("true", "false"),
     _any_integer: (_) => /[+-]?(?:0x[a-f0-9]+|\d+)/i,
     unsigned_integer: ($) =>
       seq($._any_integer, token.immediate(choice("u", "U"))),
@@ -252,7 +252,7 @@ module.exports = grammar({
         $.integer,
         $.float,
       ),
-    literal: ($) => choice($.bool, $.number),
+    literal: ($) => choice($.boolean, $.number),
 
     // must appear before `identifier` as it will always take precedence over `primitive_type`
     primitive_type: (_) =>

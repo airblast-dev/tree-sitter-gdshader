@@ -61,7 +61,7 @@
 (primitive_type) @type.builtin
 (type_identifier) @type
 (number) @number
-(bool) @boolean
+(boolean) @boolean
 
 (case_statement
   value: (identifier) @constant)
