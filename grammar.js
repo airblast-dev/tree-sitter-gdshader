@@ -113,7 +113,7 @@ module.exports = grammar({
       "discard",
       "group_uniforms",
       "global",
-      "instance"
+      "instance",
     ],
   },
   rules: {
