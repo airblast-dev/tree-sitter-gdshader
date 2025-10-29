@@ -1,36 +1,183 @@
 // taken from https://godotshaders.com/shader/outline-posterization-color-palette-and-dithering/
 // CC0 license
 shader_type spatial;
+// <- keyword
+//          ^^^^^^^ keyword
+//                 ^ punctuation.delimiter
 render_mode unshaded;
+// <- keyword
+//                  ^ punctuation.delimiter
 
 uniform sampler2D DEPTH_TEXTURE : source_color, hint_depth_texture, filter_linear_mipmap;
+// <- keyword
+//      ^^^^^^^^^ type.builtin
+//                ^^^^^^^^^^^^^ constant
+//                                ^^^^^^^^^^^^ attribute
+//                                              ^^^^^^^^^^^^^^^^^^ attribute
+//                                                                  ^ attribute
 uniform sampler2D NORMAL_TEXTURE : hint_normal_roughness_texture, filter_nearest;
+// <- keyword
+//      ^^^^^^^^^ type.builtin
+//                ^^^^^^^^^^^^^^ constant
+//                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ attribute
+//                                                                ^^^^^^^^^^^^^^^^^^ attribute
 uniform sampler2D SCREEN_TEXTURE : source_color, hint_screen_texture, repeat_disable, filter_nearest;
-
+// <- keyword
+//      ^^^^^^^^^ type.builtin
+//                ^^^^^^^^^^^^^^ constant
+//                                 ^^^^^^^^^^^^ attribute
+//                                               ^^^^^^^^^^^^^^^^^^^ attribute
+//                                                                    ^^^^^^^^^^^^^^ attribute
+//                                                                                    ^^^^^^^^^^^^^^ attribute
 uniform float zNear = 0.05;
+// <- keyword
+//      ^^^^^ type.builtin
+//            ^^^^^ variable
+//                  ^ operator
+//                    ^^^^ number
 uniform float zFar = 100;
+// <- keyword
+//      ^^^^^ type.builtin
+//            ^^^^ variable
+//                 ^ operator
+//                   ^^^ number
 
 uniform bool enable_outline = false;
+// <- keyword
+//      ^^^^ type.builtin
+//           ^^^^^^^^^^^^^^ variable
+//                          ^ operator
+//                            ^^^^^ boolean
 uniform vec3 outline_color : source_color = vec3(0.0,0.0,0.0);
+// <- keyword
+//      ^^^^ type.builtin
+//           ^^^^^^^^^^^^^ variable
+//                           ^^^^^^^^^^^^ attribute
+//                                        ^ operator
+//                                          ^^^^ type.builtin
+//                                               ^^^ number
+//                                                   ^^^ number
+//                                                       ^^^ number
 uniform float outline_thickness = 10.0;
+// <- keyword
+//      ^^^^^ type.builtin
+//            ^^^^^^^^^^^^^^^^^ variable
+//                              ^ operator
+//                                ^^^^ number
 
 uniform bool enable_color_limit = true;
+// <- keyword
+//      ^^^^ type.builtin
+//           ^^^^^^^^^^^^^^^^^^ variable
+//                              ^ operator
+//                                ^^^^ boolean
 uniform int color_levels : hint_range(2, 32) = 8;
-
+// <- keyword
+//      ^^^ type.builtin
+//          ^^^^^^^^^^^^ variable
+//                         ^^^^^^^^^^ attribute
+//                                    ^ number
+//                                       ^^ number
+//                                           ^ operator
+//                                             ^ number
 uniform bool enable_color_palette = true;
+//<- keyword
+//      ^^^^ type.builtin
+//           ^^^^^^^^^^^^^^^^^^^^ variable
+//                                ^ operator
+//                                  ^^^^ boolean
 uniform vec4 color1  : source_color  = vec4(1.0,0.925,0.839,1.0);			//#bfbfbf - avg = 0.749
+//<- keyword
+//      ^^^^ type.builtin
+//           ^^^^^^ variable
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                     ^ type.builtin
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color2  : source_color  = vec4(1.0,0.831,0.639,1.0);			//#71a668 - avg = 0.501
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color3  : source_color  = vec4(1.0,0.667,0.369,1.0);			//#6a86b0 - avg = 0.543
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color4  : source_color  = vec4(0.816,0.506,0.349,1.0);			//#76568f - avg = 0.453
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color5  : source_color  = vec4(0.553,0.412,0.478,1.0);			//#ab5c74 - avg = 0.496
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color6  : source_color  = vec4(0.329,0.306,0.408,1.0);			//#b89d6e - avg = 0.589
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color7  : source_color  = vec4(0.125,0.236,0.337,1.0);			//#4c5b6b - avg = 0.358
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^ number
+//                                              ^^^^^ number
+//                                                    ^^^^^ number
+//                                                          ^^^ number
 uniform vec4 color8  : source_color  = vec4(0.05,0.169,0.271,1.0);			//#2e253d - avg = 0.188
+// <- keyword
+//      ^^^^ type.builtin
+//                     ^^^^^^^^^^^^ attribute
+//                                   ^ operator
+//                                          ^^^^ number
+//                                               ^^^^^ number
+//                                                     ^^^^^ number
+//                                                           ^^^ number
 
 // In order, dark -> light
 // 8,7,4,5,2,3,6,1
 uniform bool enable_dithering = true;
+// <- keyword
+//      ^^^^ type.builtin
+//           ^^^^^^^^^^^^^^^^ variable
+//                            ^ operator
+//                              ^^^^ boolean
 uniform float dither_strength : hint_range(0.0, 1.0) = 0.3;
+// <- keyword
+//      ^^^^^ type.builtin
+//            ^^^^^^^^^^^^^^^ variable
+//                              ^^^^^^^^^^ attribute
+//                                         ^^^ number
+//                                              ^^^ number
+//                                                   ^ operator
+//                                                     ^^^ number
 
 //This shader uses the sobel-feldman operation to create outlines for any object on the screen.
 //It utilizes the depth and normal buffers to create the most accurate or complete outlines.
@@ -43,9 +190,26 @@ uniform float dither_strength : hint_range(0.0, 1.0) = 0.3;
 // (1)
 // Gx and Gy are two "kernels" that contain horizontal (x) and vertical(y) derivative approximations.
 const mat3 Gx = mat3(
+// <- keyword
+//    ^^^^ type.builtin
+//         ^^ variable
+//            ^ operator
+//              ^^^^ type.builtin
 				vec3(-1,-2,-1),
+				//<- type.builtin
+				//   ^^ number
+				//      ^^ number
+				//         ^^ number
 				vec3(0, 0, 0),
+				//<- type.builtin
+				//   ^ number
+				//      ^ number
+				//         ^ number
 				vec3(1, 2, 1)
+				//<- type.builtin
+				//   ^ number
+				//      ^ number
+				//         ^ number
 );
 const mat3 Gy = mat3(
 				vec3(-1,0,1),
@@ -56,12 +220,53 @@ const mat3 Gy = mat3(
 // (1) 
 // Calculating the scaled depth buffer, converting the depth from clip space, into view space.
 float depth(sampler2D depth_texture, vec2 screen_uv, mat4 inv_proj_mat, in vec3 vertex)
+// <- type.builtin
+//    ^^^^^ function
+//          ^^^^^^^^^ type.builtin
+//                    ^^^^^^^^^^^^^ variable.parameter
+//                                   ^^^^ type.builtin
+//                                        ^^^^^^^^^ variable.parameter
+//                                                   ^^^^ type.builtin
+//                                                        ^^^^^^^^^^^^ variable.parameter
+//                                                                      ^^ keyword
+//                                                                         ^^^^ type.builtin
+//                                                                              ^^^^^^ variable.parameter
 {
 	float depth_raw = texture(depth_texture, screen_uv)[0];
+	// <- type.builtin
+	//    ^^^^^^^^^ variable
+	//                ^^^^^^^ function.builtin
 	vec3 ndc = vec3(screen_uv * 2.0 - 1.0, depth_raw);
+	//<- type.builtin
+	//   ^^^ variable
+	//       ^ operator
+	//         ^^^^ type.builtin
+	//                        ^ operator
+	//                          ^^^ number
+	//                              ^ operator
+	//                                ^^^ number
+	//                                     ^^^^^ ^^^ variable
 	vec4 view_space = inv_proj_mat * vec4(ndc,1.0);
+	//<- type.builtin
+	//   ^ variable
+	//              ^ operator
+	//                             ^ operator
+	//                               ^^^^ type.builtin
+	//                                    ^^^ variable
+	//                                        ^^^ number
 	view_space.z /= view_space.w;
+	//<- variable
+	//        ^ punctuation.delimiter
+	//         ^ property
+	//           ^^ operator
+	//              ^ variable
+	//                        ^ punctuation.delimiter
+	//                         ^ property
 	float linear_depth = view_space.z;
+	//<- type.builtin
+	//    ^^^ variable
+	//                   ^^^ variable
+	//                              ^ property
 	float scaled_depth = (zFar-zNear)/(zNear + linear_depth * (zNear-zFar));
 
 	return scaled_depth;
