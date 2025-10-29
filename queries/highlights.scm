@@ -168,8 +168,8 @@
 
 ; fog has no render modes
 (shader_type_statement
-  (shader_type) @keyword)
-(#any-of? @keyword "spatial" "canvas_item" "particle" "sky" "fog")
+  (shader_type) @keyword
+  (#any-of? @keyword "spatial" "canvas_item" "particle" "sky" "fog"))
 
 (identifier) @variable
 
@@ -207,13 +207,13 @@
 
 ; technically an injection site for bbcode TODO: maybe add it?
 ((comment) @comment.documentation
+  (#match? @comment.documentation "/\\*\\*[\\s\\S]*?\\*/")
   .
   [
     (struct_definition)
     (declaration)
     (function_definition)
   ])
-(#match? @comment.documentation "/\\*\\*[\\s\\S]*?\\*/")
 
 (parameter_declaration
   declarator: [
