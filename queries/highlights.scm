@@ -1,9 +1,9 @@
 ; highlights.scm
 
-["global" "group_uniforms" "uniform" "const" "varying" 
+["global" "group_uniforms" "uniform" "const" "varying" "discard"
  "render_mode" "shader_type"
  "return" "while" "do" "break" "continue"
- "if" "else" "switch" "case" "struct" "for"] @keyword
+ "if" "else" "switch" "case" "default" "struct" "for"] @keyword
 (parameter_qualifier) @keyword
 (interpolation_specifier) @keyword
 (precision_specifier) @keyword
@@ -73,12 +73,13 @@
 (struct_definition (struct_fields (field_definition declarator: [ 
   (identifier) @variable.member (array_declarator declarator: (identifier) @variable.member)])))
 
-(preproc . _ @keyword . (_))
+(preproc . _ @keyword)
 (preproc_define_func name: (identifier) @function)
 (preproc_include path: (_) @string)
 (preproc_undef argument: (identifier) @constant)
 (comment) @comment
 
+; technically an injection site for bbcode TODO: maybe add it?
 ((comment) @comment.documentation . [(struct_definition) (declaration) (function_definition)])
 (#match? @comment.documentation "/\\*\\*[\\s\\S]*?\\*/")
 
