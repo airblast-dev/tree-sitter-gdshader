@@ -268,8 +268,23 @@ float depth(sampler2D depth_texture, vec2 screen_uv, mat4 inv_proj_mat, in vec3 
 	//                   ^^^ variable
 	//                              ^ property
 	float scaled_depth = (zFar-zNear)/(zNear + linear_depth * (zNear-zFar));
-
+	// <- type.builtin
+	//    ^ variable
+	//                 ^ operator
+	//                    ^ variable
+	//                        ^ operator
+	//                         ^ variable
+	//                               ^ operator
+	//                                 ^ variable
+	//                                       ^ operator
+	//                                         ^ variable
+	//                                                      ^ operator
+	//                                                         ^ variable
+	//                                                              ^ operator
+	//                                                               ^ variable
 	return scaled_depth;
+	//<- keyword
+	//     ^ variable
 }
 
 // (2)
