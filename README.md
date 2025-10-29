@@ -2,6 +2,8 @@
 
 GDShader grammer for tree-sitter.
 
+Inspired by the tree-sitter-c grammer.
+
 ## Implementation
 
 The GDShader does have an official syntax specification and instead forwards most of the work
