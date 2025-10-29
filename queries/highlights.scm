@@ -7,6 +7,65 @@
 (parameter_qualifier) @keyword
 (interpolation_specifier) @keyword
 (precision_specifier) @keyword
+[
+  ";"
+  "."
+] @punctuation.delimiter
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
+[
+  "="
+  "-"
+  "*"
+  "/"
+  "+"
+  "%"
+  "~"
+  "|"
+  "&"
+  "^"
+  "<<"
+  ">>"
+  "<"
+  "<="
+  ">="
+  ">"
+  "=="
+  "!="
+  "!"
+  "&&"
+  "||"
+  "-="
+  "+="
+  "*="
+  "/="
+  "%="
+  "|="
+  "&="
+  "^="
+  ">>="
+  "<<="
+  "--"
+  "++"
+  "?"
+  ":"
+] @operator
+(comma_expression operator: "," @operator)
+
+(primitive_type) @type.builtin
+(type_identifier) @type
+(number) @number
+(bool) @boolean
+
+(case_statement
+  value: (identifier) @constant)
+
 
 ; spatial 
 (source_file
@@ -73,8 +132,7 @@
 (struct_definition (struct_fields (field_definition declarator: [ 
   (identifier) @variable.member (array_declarator declarator: (identifier) @variable.member)])))
 
-(preproc . _ @keyword)
-(preproc_define_func name: (identifier) @function)
+["#undef" "#include" "#if" "#ifdef" "#ifndef" "#elif" "#else" "#endif" "#define"] @keyword
 (preproc_include path: (_) @string)
 (preproc_undef argument: (identifier) @constant)
 (comment) @comment
@@ -83,64 +141,6 @@
 ((comment) @comment.documentation . [(struct_definition) (declaration) (function_definition)])
 (#match? @comment.documentation "/\\*\\*[\\s\\S]*?\\*/")
 
-[
-  ";"
-  "."
-] @punctuation.delimiter
-[
-  "("
-  ")"
-  "["
-  "]"
-  "{"
-  "}"
-] @punctuation.bracket
-[
-  "="
-  "-"
-  "*"
-  "/"
-  "+"
-  "%"
-  "~"
-  "|"
-  "&"
-  "^"
-  "<<"
-  ">>"
-  "<"
-  "<="
-  ">="
-  ">"
-  "=="
-  "!="
-  "!"
-  "&&"
-  "||"
-  "-="
-  "+="
-  "*="
-  "/="
-  "%="
-  "|="
-  "&="
-  "^="
-  ">>="
-  "<<="
-  "--"
-  "++"
-  "?"
-  ":"
-] @operator
-(comma_expression operator: "," @operator)
-
-(primitive_type) @type.builtin
-(type_identifier) @type
-(number) @number
-(bool) @boolean
-
-(case_statement
-  value: (identifier) @constant)
 
 
 (parameter_declaration
