@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-gdshader
+module github.com/airblast-dev/tree-sitter-gdshader
 
 go 1.22
 

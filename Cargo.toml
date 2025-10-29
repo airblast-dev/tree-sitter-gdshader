@@ -1,13 +1,13 @@
 [package]
 name = "tree-sitter-gdshader"
 description = "A parser for the Godot Shader langage"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Tayfun Bocek <tayfunbocek@live.ca>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "gdshader"]
 categories = ["parser-implementations", "parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-gdshader"
+repository = "https://github.com/airblast-dev/tree-sitter-gdshader"
 edition = "2021"
 autoexamples = false
 
