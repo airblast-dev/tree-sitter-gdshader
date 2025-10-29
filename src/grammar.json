@@ -3150,10 +3150,6 @@
     ],
     [
       "array_declarator"
-    ],
-    [
-      "_comma_seperated_decl",
-      "_declarator_item"
     ]
   ],
   "precedences": [],
