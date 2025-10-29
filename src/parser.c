@@ -15,7 +15,7 @@
 #define EXTERNAL_TOKEN_COUNT 1
 #define FIELD_COUNT 31
 #define MAX_ALIAS_SEQUENCE_LENGTH 8
-#define MAX_RESERVED_WORD_SET_SIZE 26
+#define MAX_RESERVED_WORD_SET_SIZE 27
 #define PRODUCTION_ID_COUNT 69
 #define SUPERTYPE_COUNT 8
 
@@ -4822,6 +4822,7 @@ static const TSSymbol ts_reserved_words[12][MAX_RESERVED_WORD_SET_SIZE] = {
     anon_sym_out,
     anon_sym_inout,
     anon_sym_global,
+    anon_sym_instance,
     anon_sym_if,
     anon_sym_else,
     anon_sym_while,
@@ -4883,6 +4884,7 @@ static const TSSymbol ts_reserved_words[12][MAX_RESERVED_WORD_SET_SIZE] = {
     anon_sym_out,
     anon_sym_inout,
     anon_sym_global,
+    anon_sym_instance,
     anon_sym_struct,
     anon_sym_const,
     anon_sym_varying,
@@ -4899,6 +4901,7 @@ static const TSSymbol ts_reserved_words[12][MAX_RESERVED_WORD_SET_SIZE] = {
     anon_sym_out,
     anon_sym_inout,
     anon_sym_global,
+    anon_sym_instance,
     anon_sym_else,
     anon_sym_struct,
     anon_sym_const,
@@ -4939,6 +4942,7 @@ static const TSSymbol ts_reserved_words[12][MAX_RESERVED_WORD_SET_SIZE] = {
     anon_sym_out,
     anon_sym_inout,
     anon_sym_global,
+    anon_sym_instance,
     anon_sym_if,
     anon_sym_else,
     anon_sym_while,
@@ -4964,6 +4968,7 @@ static const TSSymbol ts_reserved_words[12][MAX_RESERVED_WORD_SET_SIZE] = {
     anon_sym_out,
     anon_sym_inout,
     anon_sym_global,
+    anon_sym_instance,
     anon_sym_if,
     anon_sym_else,
     anon_sym_while,
@@ -22196,7 +22201,7 @@ TS_PUBLIC const TSLanguage *tree_sitter_gdshader(void) {
     .primary_state_ids = ts_primary_state_ids,
     .name = "gdshader",
     .reserved_words = &ts_reserved_words[0][0],
-    .max_reserved_word_set_size = 26,
+    .max_reserved_word_set_size = 27,
     .metadata = {
       .major_version = 0,
       .minor_version = 1,
