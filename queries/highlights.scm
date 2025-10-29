@@ -80,6 +80,7 @@
 (comment) @comment
 
 ((comment) @comment.documentation . [(struct_definition) (declaration) (function_definition)])
+(#match? @comment.documentation "/\\*\\*[\\s\\S]*?\\*/")
 
 [
   ";"
