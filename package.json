@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-gdshader",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A parser for the Godot Shader langage",
   "repository": "https://github.com/airblast-dev/tree-sitter-gdshader",
   "license": "MIT",
