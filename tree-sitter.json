@@ -21,7 +21,7 @@
   ],
   "metadata": {
     "version": "0.2.0",
-    "license": "GPL3.0",
+    "license": "MIT",
     "description": "A parser for the Godot Shader langage",
     "authors": [
       {
