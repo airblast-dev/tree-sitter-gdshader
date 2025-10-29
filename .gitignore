@@ -48,7 +48,3 @@ zig-out/
 *.tar.gz
 *.tgz
 *.zip
-
-# Generated C code
-src/*
-!src/scanner.c
