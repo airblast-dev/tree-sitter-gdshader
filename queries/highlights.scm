@@ -230,11 +230,6 @@
 (field_expression
   field: (_) @property)
 
-(call_expression
-  function: (identifier)
-  arguments: (argument_list
-    (identifier)? @variable)) @function
-
 ((call_expression
   function: (identifier) @function.builtin)
   (#any-of? @function.builtin
