@@ -200,6 +200,9 @@
 (field_expression
   field: (_) @property)
 
+(call_expression
+  function: (identifier) @function)
+
 ((call_expression
   function: (identifier) @function.builtin)
   (#any-of? @function.builtin
@@ -226,9 +229,6 @@
     ; bitwise builtins
     "bitfieldExtract" "bitfieldInsert" "bitfieldReverse" "bitCount" "findLSB" "findMSB" "imulExtend"
     "umulExtend" "uaddCarry" "usubBorrow" "ldexp" "frexp"))
-
-((call_expression)
-  function: (identifier) @function)
 
 ; assume all uppercase variables as constants
 ((identifier) @constant
