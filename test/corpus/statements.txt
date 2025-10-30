@@ -189,6 +189,15 @@ do {
       (identifier))))
 
 ===
+Do While Without Semicolon
+:error
+===
+void vertex() {
+  do {} while (123< 2231) {}
+}
+---
+
+===
 Return
 ===
 void myfunc() {
