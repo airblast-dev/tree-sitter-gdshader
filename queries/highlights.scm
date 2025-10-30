@@ -226,8 +226,9 @@
     ; bitwise builtins
     "bitfieldExtract" "bitfieldInsert" "bitfieldReverse" "bitCount" "findLSB" "findMSB" "imulExtend"
     "umulExtend" "uaddCarry" "usubBorrow" "ldexp" "frexp"))
+
 ((call_expression)
- function: (identifier) @function)
+  function: (identifier) @function)
 
 ; assume all uppercase variables as constants
 ((identifier) @constant
