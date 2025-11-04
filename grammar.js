@@ -5,6 +5,8 @@
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
+/// <reference types="npm:tree-sitter-cli/dsl" />
+// @ts-check
 
 const PREC = {
   PARENTHICAL_GROUP: 17,
@@ -256,7 +258,7 @@ module.exports = grammar({
     // must appear before `identifier` as it will always take precedence over `primitive_type`
     primitive_type: (_) =>
       /void|bool|u?int|float|(?:[biu]?vec|mat)[2-4]|[iu]?sampler(?:2D(Array)?|3D)|sampler(?:Cube(?:Array)?|ExternalOES)/,
-    identifier: (_) => /(r#)?[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    identifier: (_) => /(r#)?[_\p{XID_Start}][_\p{XID_Continue}]*/u,
     _type_identifier: ($) => alias($.identifier, $.type_identifier),
     block_item: ($) =>
       choice(
@@ -315,6 +317,7 @@ module.exports = grammar({
       choice($.identifier, $.field_expression, $.subscript_expression),
 
     binary_expression: ($) => {
+      /**  @type {Array<[number, RuleOrLiteral]>} */
       const table = [
         [PREC.LOGICAL_INCLUSIVE_OR, "||"],
         [PREC.LOGICAL_EXCLUSIVE_OR, "^^"],
@@ -334,7 +337,10 @@ module.exports = grammar({
 
       return prec.left(choice(
         ...table.map(
-          ([precedence, rule]) =>
+          ([
+            precedence,
+            rule,
+          ]) =>
             prec.left(
               precedence,
               seq(
@@ -704,10 +710,16 @@ module.exports = grammar({
   },
 });
 
+/**
+ * @param {RuleOrLiteral} rule
+ */
 function comma_seperated_rule(rule) {
   return seq(rule, repeat(seq(",", rule)));
 }
 
+/**
+ * @param {RuleOrLiteral} rule
+ */
 function comma_seperated_trailing_rule(rule) {
   return seq(rule, repeat(seq(",", rule)), optional(","));
 }

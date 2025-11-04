@@ -636,7 +636,8 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "(r#)?[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+      "value": "(r#)?[_\\p{XID_Start}][_\\p{XID_Continue}]*",
+      "flags": "u"
     },
     "_type_identifier": {
       "type": "ALIAS",
