@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-gdshader"
 description = "A parser for the Godot Shader langage"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["Tayfun Bocek <tayfunbocek@live.ca>"]
 license = "MIT"
 readme = "README.md"
