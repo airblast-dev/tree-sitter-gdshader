@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-gdshader
-        VERSION "0.2.6"
+        VERSION "0.2.7"
         DESCRIPTION "A parser for the Godot Shader langage"
         HOMEPAGE_URL "https://github.com/airblast-dev/tree-sitter-gdshader"
         LANGUAGES C)
