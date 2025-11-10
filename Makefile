@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-gdshader
 HOMEPAGE_URL := https://github.com/airblast-dev/tree-sitter-gdshader
-VERSION := 0.2.5
+VERSION := 0.2.6
 
 # repository
 SRC_DIR := src
