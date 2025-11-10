@@ -8,6 +8,20 @@ render_mode unshaded;
 // <- keyword
 //                  ^ punctuation.delimiter
 
+global uniform vec2 POSITION: thing;
+// <- keyword
+//     ^^^^^^^ keyword
+//             ^^^^ type.builtin
+//                  ^^^^^^^^ constant
+//                            ^^^^^ attribute
+
+instance uniform vec2 POSITION: thing;
+// <- keyword
+//       ^^^^^^^ keyword
+//               ^^^^ type.builtin
+//                    ^^^^^^^^ constant
+//                              ^^^^^ attribute
+
 uniform sampler2D DEPTH_TEXTURE : source_color, hint_depth_texture, filter_linear_mipmap;
 // <- keyword
 //      ^^^^^^^^^ type.builtin
@@ -293,6 +307,19 @@ float depth(sampler2D depth_texture, vec2 screen_uv, mat4 inv_proj_mat, in vec3 
 // but we'll also be performing the sobel operation on the normal values, for a more "complete"
 // looking outline.
 float sobel_depth(in vec2 uv, in vec2 offset, in vec3 vertex, mat4 inv_proj_mat)
+// <- type.builtin
+//    ^^^^^^^^^^^ function
+//                ^^ keyword
+//                   ^^^^ type.builtin
+//                        ^^ variable.parameter
+//                            ^^ keyword
+//                               ^^^^ type.builtin
+//                                    ^^^^^^ variable.parameter
+//                                            ^^ keyword
+//                                               ^^^^ type.builtin
+//                                                    ^^^^^^ variable.parameter
+//                                                           ^^^^ type.builtin
+//                                                                ^^^^^^^^^^^^^ variable.parameter
 {
 	//used for multiplying the results of the depth calculation with
 	//the Gx and Gy kernels;

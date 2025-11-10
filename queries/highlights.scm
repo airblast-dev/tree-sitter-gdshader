@@ -1,6 +1,7 @@
 ; highlights.scm
 [
   "global"
+  "instance"
   "group_uniforms"
   "uniform"
   "const"
