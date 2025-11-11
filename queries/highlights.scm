@@ -1,7 +1,5 @@
 ; highlights.scm
 [
-  "global"
-  "instance"
   "group_uniforms"
   "uniform"
   "const"
@@ -28,6 +26,8 @@
 (interpolation_specifier) @keyword
 
 (precision_specifier) @keyword
+
+(scope) @keyword
 
 [
   ";"
