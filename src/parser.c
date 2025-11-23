@@ -24335,7 +24335,7 @@ TS_PUBLIC const TSLanguage *tree_sitter_gdshader(void) {
     .max_reserved_word_set_size = 27,
     .metadata = {
       .major_version = 0,
-      .minor_version = 3,
+      .minor_version = 4,
       .patch_version = 0,
     },
   };
