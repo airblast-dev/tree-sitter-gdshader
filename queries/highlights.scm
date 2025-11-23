@@ -251,3 +251,5 @@
     (call_expression
       function: (_) @attribute)
   ])
+
+(method_expression method: (_) @function.method)
