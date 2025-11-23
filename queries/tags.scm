@@ -1,10 +1,13 @@
-(function_definition
-  declarator: (identifier) @name) @definition.function
+((function_definition
+  declarator: (identifier) @name) @definition.function)
 
-(call_expression
-  function: (identifier) @name) @reference.call
+((call_expression
+  function: (_) @name) @reference.call)
 
-(struct_definition
-  name: (identifier) @name) @definition.type
+((method_expression
+  method: (identifier) @name) @reference.call)
 
-((type_identifier) @name) @reference.type
+((struct_definition
+  name: (identifier) @name) @definition.class)
+
+(((type_identifier) @name) @reference.class)
