@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-gdshader"
 description = "A parser for the Godot Shader langage"
-version = "0.2.7"
+version = "0.2.8"
 keywords = ["incremental", "parsing", "tree-sitter", "gdshader"]
 classifiers = [
   "Intended Audience :: Developers",
