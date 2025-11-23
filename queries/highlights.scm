@@ -204,6 +204,9 @@
 (call_expression
   function: (identifier) @function)
 
+(method_expression
+  method: (_) @function.method)
+
 ((call_expression
   function: (identifier) @function.builtin)
   (#any-of? @function.builtin
@@ -251,5 +254,3 @@
     (call_expression
       function: (_) @attribute)
   ])
-
-(method_expression method: (_) @function.method)
