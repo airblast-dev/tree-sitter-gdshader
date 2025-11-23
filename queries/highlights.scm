@@ -205,7 +205,7 @@
   function: (identifier) @function)
 
 (method_expression
-  method: (_) @function.method)
+  method: (_) @function)
 
 ((call_expression
   function: (identifier) @function.builtin)

@@ -189,6 +189,6 @@ const float PI_MULT_BY2 = PI * 2.;
 //                  ^ punctuation.delimiter
 }
 myval.length();
-//    ^^^^^^ function.method
+//    ^^^^^^ function
 }
 // <- punctuation.bracket
