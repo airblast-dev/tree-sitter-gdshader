@@ -118,10 +118,8 @@ module.exports = grammar({
     ],
   },
   rules: {
-    // TODO: add the actual grammar rules
     source_file: ($) => repeat($._top_level_item),
 
-    // top level only bits
     _top_level_item: ($) =>
       choice(
         $.struct_definition,
@@ -132,7 +130,7 @@ module.exports = grammar({
       ),
 
     // preproc bits
-    // partially taken then modified from:
+    // partially taken then modified from: the C grammer
     string_literal: ($) =>
       seq(
         '"',
@@ -174,7 +172,6 @@ module.exports = grammar({
         $.preproc_endif,
         $.preproc_pragma,
       ),
-    // https://github.com/tree-sitter/tree-sitter-c/blob/ae19b676b13bdcc13b7665397e6d9b14975473dd/grammar.js#L165C5-L165C69
     preproc_arg: (_) => token(prec(-1, /\S([^/\n]|\/[^*]|\\\r?\n)*/)),
     preproc_include: ($) =>
       seq(
@@ -255,7 +252,6 @@ module.exports = grammar({
       ),
     literal: ($) => choice($.boolean, $.number),
 
-    // must appear before `identifier` as it will always take precedence over `primitive_type`
     primitive_type: (_) =>
       /void|bool|u?int|float|(?:[biu]?vec|mat)[2-4]|[iu]?sampler(?:2D(Array)?|3D)|sampler(?:Cube(?:Array)?|ExternalOES)/,
     identifier: (_) => /(r#)?[_\p{XID_Start}][_\p{XID_Continue}]*/u,
@@ -427,8 +423,6 @@ module.exports = grammar({
 
     // Comma expressions are only supported under specific contexts so just
     // use choice(comma_expr, expr) instead where needed
-    //
-    // TODO: add method expressions for array.length() parsing
     expression: ($) =>
       choice(
         $.update_expression,
@@ -528,7 +522,6 @@ module.exports = grammar({
         ),
       ),
 
-    // TODO: fill with actual names
     _render_mode: ($) => alias($.identifier, $.render_mode),
     _shader_type: ($) => alias($.identifier, $.shader_type),
 
